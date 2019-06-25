@@ -1,7 +1,9 @@
 const React = require('react');
+const {useState} = React;
 
-
-const App = () => { 
+const App = () => {
+  
+  const [date, setDate] = useState('');
   
   return (
     <main>
@@ -10,8 +12,8 @@ const App = () => {
         <a href="https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/">Get timestamp for today</a><br/>
 
         Get timestamp:<br/>
-        <input type="date" name="bday"/>
-        <a type="submit" value="Submit"/>
+        <input type="text" placeholder="2016-11-20" name="date" onChange={e => setDate(e.target.value)}/>
+        <a href={"https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/" + date}>Get timestamp</a>
         
         <h3>User Stories :</h3>
         <ol className="user-stories">
