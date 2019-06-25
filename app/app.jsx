@@ -7,12 +7,12 @@ const App = () => {
     <main>
     <div className="container">
         <h2>API Project: Timestamp Microservice</h2>
-        <a href="https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/">Get timestamp for today</a>
-        <form action="/api/timestamp/">
-          Get timestamp:<br/>
-          <input type="date"/>
-          <input type="submit" value="Submit"/>
-        </form> 
+        <a href="https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/">Get timestamp for today</a><br/>
+
+        Get timestamp:<br/>
+        <input type="date" name="bday"/>
+        <a type="submit" value="Submit"/>
+        
         <h3>User Stories :</h3>
         <ol className="user-stories">
           
