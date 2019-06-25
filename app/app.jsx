@@ -10,10 +10,13 @@ const App = () => {
     <div className="container">
         <h2>API Project: Timestamp Microservice</h2>
         <a href="https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/">Get timestamp for today</a><br/>
-
-        Get timestamp:<br/>
-        <input type="text" placeholder="2016-11-20" name="date" onChange={e => setDate(e.target.value)}/>
-        <a href={"https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/" + date}>Get timestamp</a>
+        
+        <form>
+          Get timestamp:<br/>
+          <input type="text" placeholder="2016-11-20" name="date" onChange={e => setDate(e.target.value}/>
+          <a href={"https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/" + date}>Get timestamp</a>
+        </form>
+        
         
         <h3>User Stories :</h3>
         <ol className="user-stories">
