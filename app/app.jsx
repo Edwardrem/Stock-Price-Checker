@@ -5,7 +5,8 @@ const App = () => {
   
   const [date, setDate] = useState('');
   
-  const handleSubmit = () => {
+  const handleSubmit = e => {
+    e.preventDefault();
     window.location.href = "https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/" + date;
   }
   
