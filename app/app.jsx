@@ -34,11 +34,6 @@ const App = () => {
           <code>{'{'}"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"{'}'}</code>
         </p>
       </div>
-      <div className="footer">
-        <p>
-          by <a href="http://www.freecodecamp.com/">freeCodeCamp</a> | <a href="https://hyperdev.com/#!/remix/FCC_API_timestamp_bplate/8338be2-a353-4892-8a0d-6295e4f12eb5">Click here to Remix</a>
-        </p>
-      </div>
     </main>
   )
 }
