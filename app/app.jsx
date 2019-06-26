@@ -11,7 +11,6 @@ const App = () => {
   }
   
   return (
-    <main>
     <div className="container">
         <h2>API Project: Timestamp Microservice</h2>
         
@@ -49,7 +48,6 @@ const App = () => {
           <code>{'{'}"unix":1451001600000, "utc":"Fri, 25 Dec 2015 00:00:00 GMT"{'}'}</code>
         </p>
       </div>
-    </main>
   )
 }
 
