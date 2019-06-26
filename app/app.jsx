@@ -29,7 +29,7 @@ const App = () => {
             <input type="submit" value="Submit"/>
           </form>
           <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{'{'}userId{'}'}[&amp;from][&amp;to][&amp;limit]</code></p>
-          <p><strong>{ }</strong> = required, <strong>[ ]</strong> = optional</p>
+          <p><strong>{'{ }'}</strong> = required, <strong>[ ]</strong> = optional</p>
           <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
       </div>
   )

@@ -1,27 +1,34 @@
-// server.js
+const express = require('express')
+const bodyParser = require('body-parser')
+const cors = require('cors')
+const mongoose = require('mongoose')
 
-// init project
-var express = require('express');
-var app = express();
-var parseDate = require('./helper')
+const errorHandler = require('./handlers/error');
+const apiRoutes = require('./routes/api');
 
-// enable CORS (https://en.wikipedia.org/wiki/Cross-origin_resource_sharing)
-// so that your API is remotely testable by FCC 
-var cors = require('cors');
-app.use(cors({optionSuccessStatus: 200}));  // some legacy browsers choke on 204
+const app = express()
 
-// http://expressjs.com/en/starter/static-files.html
-app.use(express.static('public'));
+app.use(cors())
+
+app.use(bodyParser.urlencoded({extended: false}))
+app.use(bodyParser.json())
+
+app.use(express.static('public'))
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function(request, response) {
-  response.sendFile(__dirname + '/app/index.html');
+  response.sendFile(__dirname + '/view/index.html');
 });
 
-// your first API endpoint... 
-app.get("/api/timestamp/:date_string?", (req, res) => {
-  res.json(parseDate(req.params.date_string));
-});
+// routes
+app.use('/api/exercise', apiRoutes);
+
+// Not found middleware
+app.use((req, res, next) => {
+  return next({status: 404, message: 'not found'})
+})
+
+app.use(errorHandler);
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
