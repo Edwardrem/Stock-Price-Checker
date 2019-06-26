@@ -16,7 +16,7 @@ const App = () => {
         <h2>API Project: Timestamp Microservice</h2>
         
         <form onSubmit={handleSubmit}>
-          Get timestamp:<br/>
+          Get Timestamp (json response):<br/>
           <input type="text" placeholder="example: 2016-11-20" name="date" onChange={e => setDate(e.target.value)}  />
           <input type="submit" value="Submit"/>
         </form>
