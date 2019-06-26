@@ -3,7 +3,7 @@ const {useState} = React;
 
 const App = () => {
   
-  const [user, setUser] = useState('');
+  const [userId, setUserId] = useState('');
   
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const App = () => {
           <p><code>POST /api/exercise/new-user</code></p>
           <input id="uname" type="text" name="username" placeholder="username"/>
           <input type="submit" value="Submit"/>
-        </form><br/>
+        </form>
         <form onSubmit={handleSubmit}>
           <h3>Get All users:</h3>
           <p><code>Get /api/exercise/users</code></p>
@@ -33,6 +33,12 @@ const App = () => {
           <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)"/>
           <input type="submit" value="Submit"/>
         </form>
+        <form action="/api/exercise/log">
+          <h3>Get user log</h3>
+          <p><code>Get /api/exercise/log</code></p>
+          <input type="text" name="userId" placeholder="example: V4amJycRL" />
+          <input type="submit" value="Submit"/>
+        </form><br/>
         <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{'{'}userId{'}'}[&amp;from][&amp;to][&amp;limit]</code></p>
         <p><strong>{'{ }'}</strong> = required, <strong>[ ]</strong> = optional</p>
         <p><strong>from, to</strong> = dates (yyyy-mm-dd); <strong>limit</strong> = number</p>
