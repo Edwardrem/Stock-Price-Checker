@@ -17,7 +17,7 @@ module.exports = {
         test: /\.jsx?$/,
         loader: 'jsx-loader',
         exclude: /node_modules/,
-        include: path.join(__dirname, 'app'),
+        include: path.join(__dirname, 'view'),
       },
     ],
   },
