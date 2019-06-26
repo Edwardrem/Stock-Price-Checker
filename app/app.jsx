@@ -7,7 +7,7 @@ const App = () => {
   
   const handleSubmit = e => {
     e.preventDefault();
-    window.location.href = "https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/" + date;
+    window.location.href = "https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/api/shorturl/" + date;
   }
   
   return (
