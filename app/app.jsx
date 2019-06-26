@@ -14,11 +14,10 @@ const App = () => {
     <main>
     <div className="container">
         <h2>API Project: Timestamp Microservice</h2>
-        <a href="https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/">Get timestamp for today</a><br/>
         
         <form onSubmit={handleSubmit}>
           Get timestamp:<br/>
-          <input type="text" placeholder="2016-11-20" name="date" onChange={e => setDate(e.target.value)}  />
+          <input type="text" placeholder="example: 2016-11-20" name="date" onChange={e => setDate(e.target.value)}  />
           <input type="submit" value="Submit"/>
         </form>
         
