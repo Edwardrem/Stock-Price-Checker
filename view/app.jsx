@@ -35,7 +35,7 @@ const App = () => {
         </form>
         <form action="/api/exercise/log">
           <h3>Get user log</h3>
-          <p><code>Get /api/exercise/log</code></p>
+          <p><code>Get /api/exercise/log?{'{userId}'}</code></p>
           <input type="text" name="userId" placeholder="example: V4amJycRL" />
           <input type="submit" value="Submit"/>
         </form><br/>
@@ -45,7 +45,6 @@ const App = () => {
       
         <h3>User Stories :</h3>
         <ol className="user-stories">
-          
           <li>I can create a user by posting form data username to /api/exercise/new-user and returned will be an object with username and _id.</li>
           <li>I can get an array of all users by getting api/exercise/users with the same info as when creating a user.</li>
           <li>I can add an exercise to any user by posting form data userId(_id), description, duration, and optionally date to /api/exercise/add. If no date supplied it will use current date. Returned will the the user object with also with the exercise fields added.</li>
