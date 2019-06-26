@@ -3,11 +3,11 @@ const {useState} = React;
 
 const App = () => {
   
-  const [date, setDate] = useState('');
+  const [user, setUser] = useState('');
   
   const handleSubmit = e => {
     e.preventDefault();
-    window.location.href = "https://fcc-bt-timestamp-microservice.glitch.me/api/timestamp/api/shorturl/" + date;
+    window.location.href = "https://fcc-bt-exercise-tracker.glitch.me/api/exercise/users";
   }
   
   return (
@@ -17,6 +17,11 @@ const App = () => {
           <h3>Create a New User</h3>
           <p><code>POST /api/exercise/new-user</code></p>
           <input id="uname" type="text" name="username" placeholder="username"/>
+          <input type="submit" value="Submit"/>
+        </form><br/>
+        <form onSubmit={handleSubmit}>
+          <h3>Get All users:</h3>
+          <p><code>Get /api/exercise/users</code></p>
           <input type="submit" value="Submit"/>
         </form><br/>
         <form action="/api/exercise/add" method="post">
