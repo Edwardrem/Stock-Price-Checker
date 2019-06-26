@@ -36,7 +36,7 @@ const App = () => {
         <form action="/api/exercise/log">
           <h3>Get user log</h3>
           <p><code>Get /api/exercise/log?{'{userId}'}</code></p>
-          <input type="text" name="userId" placeholder="example: V4amJycRL" />
+          <input type="text" name="userId" placeholder="userId" />
           <input type="submit" value="Submit"/>
         </form><br/>
         <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{'{'}userId{'}'}[&amp;from][&amp;to][&amp;limit]</code></p>
