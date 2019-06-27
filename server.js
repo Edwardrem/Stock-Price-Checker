@@ -20,15 +20,14 @@ app.get("/", function(request, response) {
   response.sendFile(__dirname + '/view/index.html');
 });
 
-// routes
-app.use('/api/exercise', apiRoutes);
+
 
 // Not found middleware
 app.use((req, res, next) => {
   return next({status: 404, message: 'not found'})
 })
 
-app.use(errorHandler);
+
 
 // listen for requests :)
 var listener = app.listen(process.env.PORT, function () {
