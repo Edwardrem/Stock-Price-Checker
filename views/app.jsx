@@ -3,11 +3,17 @@ const {useState} = React;
 
 const App = () => {
   
-  const [userId, setUserId] = useState('');
+  const [input, setInput] = useState('');
   
   const handleSubmit = e => {
     e.preventDefault();
-    window.location.href = "https://fcc-bt-exercise-tracker.glitch.me/api/exercise/users";
+    fetch('/api/convert/'+ input)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(JSON.stringify(myJson));
+      });
   }
   
   return (
@@ -39,9 +45,9 @@ const App = () => {
       <hr/>
       <div id='testui'>
         <h2 >Front-End:</h2>
-        <form id="convertForm" className="border">
-          <input type="text" id="convertField" name="input" placeholder="3.1mi"/>
-          <input id="convert" type="submit" value='Convert!'/>
+        <form onSubmit={handleSubmit}>
+          <input type="text" name="input" placeholder="3.1mi" onChange={e => setInput(e.terget.value)}/>
+          <input type="submit" value='Convert!'/>
         </form>
         <p id='result'></p>
         <code id='jsonResult'></code>
