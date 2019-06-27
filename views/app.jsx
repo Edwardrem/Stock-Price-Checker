@@ -4,16 +4,13 @@ const {useState} = React;
 const App = () => {
   
   const [input, setInput] = useState('');
+  const [result, setResult] = useState('');
   
   const handleSubmit = e => {
     e.preventDefault();
-    fetch('/api/convert/'+ input)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
-      });
+    fetch('/api/convert?input='+ input)
+      .then(response => response.json())
+      .then((myJson) => console.log(JSON.stringify(myJson)));
   }
   
   return (
@@ -46,7 +43,7 @@ const App = () => {
       <div id='testui'>
         <h2 >Front-End:</h2>
         <form onSubmit={handleSubmit}>
-          <input type="text" name="input" placeholder="3.1mi" onChange={e => setInput(e.terget.value)}/>
+          <input type="text" name="input" placeholder="3.1mi" onChange={e => setInput(e.target.value)}/>
           <input type="submit" value='Convert!'/>
         </form>
         <p id='result'></p>
