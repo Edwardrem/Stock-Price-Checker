@@ -18,43 +18,59 @@ const App = () => {
   }
   
   return (
-    <div className='container'>
-      <h3>User Stories</h3>
-      <ol>
-        <li>I will help prevent the client from trying to guess(sniff) the MIME type.</li>
-        <li>I will prevent cross-site scripting (XSS) attacks.</li>
-        <li>I can <b>GET</b> <code>/api/convert</code> with a single parameter containing an accepted number and unit and have it converted.</li>
-        <li>Hint: Split the input by looking for the index of the first character.</li>
-        <li>I can convert 'gal' to 'L' and vice versa. <b>(1 gal to 3.78541 L)</b></li>
-        <li>I can convert 'lbs' to 'kg' and vice versa. <b>(1 lbs to 0.453592 kg)</b></li> 
-        <li>I can convert 'mi' to 'km' and vice versa. <b>(1 mi to 1.60934 km)</b></li>
-        <li>If my unit of measurement is invalid, returned will be 'invalid unit'.</li>
-        <li>If my number is invalid, returned with will 'invalid number'.</li>
-        <li>If both are invalid, return will be 'invalid number and unit'.</li>
-        <li>I can use fractions, decimals or both in my parameter(ie. 5, 1/2, 2.5/6), but if nothing is provided it will default to 1.</li>
-        <li>My return will consist of the initNum, initUnit, returnNum, returnUnit, and string spelling out units in format <code>{'{'}initNum{'}'} {'{'}initial_Units{'}'} converts to {'{'}returnNum{'}'} {'{'}return_Units{'}'}</code> with the result rounded to 5 decimals.</li>
-        <li>All 16 unit tests are complete and passing.</li>
-        <li>All 5 functional tests are complete and passing.</li>
-      </ol>
-      <h3>Example usage:</h3>
-      <code>/api/convert?input=4gal</code><br/>
-      <code>/api/convert?input=1/2km</code><br/>
-      <code>/api/convert?input=5.4/3lbs</code><br/>
-      <code>/api/convert?input=kg</code><br/>
-      <h3>Example return:</h3>
-      <code>{'{'}initNum: 3.1, initUnit: 'mi', returnNum: 5.0000008, returnUnit: 'km', string: '3.1 miles converts to 5.00002 kilometers'{'}'}</code>
-      <hr/>
-      <div id='testui'>
-        <h2 >Front-End:</h2>
-        <form onSubmit={handleSubmit}>
-          <input type="text" name="input" placeholder="3.1mi" onChange={e => setInput(e.target.value)}/>
-          <input type="submit" value='Convert!'/>
-        </form>
-        <p id='result'>{resultText}</p>
-        <code id='jsonResult'>{resultJson}</code>
+    <main className='container'>
+      <div id='userstories'>
+        <h3>User Stories</h3>
+        <ol>
+          <li>Prevent cross site scripting(XSS attack).</li>
+          <li>I can <b>POST</b> <code>/api/issues/{projectname}</code> with form data containing required <i>issue_title</i>, <i>issue_text</i>, <i>created_by</i>, and optional <i>assigned_to</i> and <i>status_text</i>.</li>
+          <li>The object saved (and returned) will include all of those fields (blank for optional no input) and also include <i>created_on</i>(date/time), <i>updated_on</i>(date/time), <i>open</i>(boolean, true for open, false for closed), and <i>_id</i>.</li>
+          <li>I can <b>PUT</b> <code>/api/issues/{projectname}</code> with a <i>_id</i> and any fields in the object with a value to object said object. Returned will be 'successfully updated' or 'could not update '+_id. This should always update <i>updated_on</i>. If no fields are sent return 'no updated field sent'.</li>
+          <li>I can <b>DELETE</b> <code>/api/issues/{projectname}</code> with a <i>_id</i> to completely delete an issue. If no _id is sent return '_id error', success: 'deleted '+_id, failed: 'could not delete '+_id.</li>
+          <li>I can <b>GET</b> <code>/api/issues/{projectname}</code> for an array of all issues on that specific project with all the information for each issue as was returned when posted.</li>
+          <li>I can filter my get request by also passing along any field and value in the query(ie. <code>/api/issues/{project}?open=false</code>). I can pass along as many fields/values as I want.</li>
+          <li>All 11 functional tests are complete and passing.</li>
+        </ol>
+        <br/>
+        <h3>Example get usage:</h3>
+        <code>/api/issues/{'{'}project{'}'}</code><br/>
+        <code>/api/issues/{'{'}project{'}'}?open=true&amp;assigned_to=Joe</code><br/>
+        <h3>Example return:</h3>
+        <code>[{'{'}"_id":"5871dda29faedc3491ff93bb","issue_title":"Fix error in posting data","issue_text":"When we post data it has an error.","created_on":"2017-01-08T06:35:14.240Z","updated_on":"2017-01-08T06:35:14.240Z","created_by":"Joe","assigned_to":"Joe","open":true,"status_text":"In QA"{'}'},...]</code>
+        <br/><br/>
+        <h2><a href='/apitest/'>EXAMPLE: Go to <i>/apitest/</i> project issues</a></h2>
       </div>
-      <hr/>
-    </div>
+      <hr >
+      <div id='testui' >
+        <h2 >API Tests:</h2>
+        <h3>Submit issue on <i>apitest</i></h3>
+        <form id="testForm" class="border">
+          <input type="text" name="issue_title" placeholder="*Title" required=''/><br/>
+          <textarea type="text" name="issue_text" placeholder="*Text" required=''></textarea><br/>
+          <input type="text" name="created_by" placeholder="*Created by" required=''/><br/>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
+          <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
+          <button type="submit">Submit Issue</button>
+        </form><br/>
+        <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
+        <form id="testForm2" class="border">
+          <input type="text" name="_id" placeholder="*_id" required=''/><br/>
+          <input type="text" name="issue_title" placeholder="(opt)Title"/><br/>
+          <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea><br/>
+          <input type="text" name="created_by" placeholder="(opt)Created by"/><br/>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
+          <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
+          <label><input type="checkbox" name="open" value={false}/> Check to close issue</label><br/>
+          <button type="submit">Submit Issue</button>
+        </form><br/>
+        <h3>Delete issue on <i>apitest</i></h3>
+        <form id="testForm3" class="border">
+          <input type="text" name="_id" placeholder="_id" required=''/><br/>
+          <button type="submit">Delete Issue</button>
+        </form>
+        <code id='jsonResult'></code>
+      </div>
+    </main>
   )
 }
 
