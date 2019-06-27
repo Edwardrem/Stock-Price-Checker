@@ -23,7 +23,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // http://expressjs.com/en/starter/basic-routing.html
 app.get("/", function(request, response) {
-  response.sendFile(__dirname + '/view/index.html');
+  response.sendFile(__dirname + '/views/index.html');
 });
 
 //For FCC testing purposes
