@@ -39,6 +39,12 @@ app.use(function(req, res, next) {
     .send('Not Found');
 });
 
+app.use((error, request, response, next) => {
+  return response.status(error.status || 500).json({
+    error: error.message || 'invalid URL'
+  });
+});
+
 //Start our server and tests!
 app.listen(process.env.PORT || 3000, function () {
   console.log("Listening on port " + process.env.PORT);
