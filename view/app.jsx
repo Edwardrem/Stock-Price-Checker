@@ -32,11 +32,20 @@ const App = () => {
           <input id="dur" type="text" name="duration" placeholder="duration* (mins.)"/>
           <input id="dat" type="text" name="date" placeholder="date (yyyy-mm-dd)"/>
           <input type="submit" value="Submit"/>
-        </form>
+        </form><br/>
         <form action="/api/exercise/log">
           <h3>Get user log</h3>
           <p><code>Get /api/exercise/log?{'{userId}'}</code></p>
           <input type="text" name="userId" placeholder="userId" />
+          <input type="submit" value="Submit"/>
+        </form>
+      <form action="/api/exercise/log">
+          <h3>Get user log by date</h3>
+          <p><code>Get /api/exercise/log?{'{userId}'}</code></p>
+          <input type="text" name="userId" placeholder="userId" />
+          <input type="date" name="from" placeholder="from" />
+          <input type="date" name="to" placeholder="to" />
+          <input type="number" name="limit" placeholder="limit" />
           <input type="submit" value="Submit"/>
         </form><br/>
         <p><strong>GET users's exercise log: </strong><code>GET /api/exercise/log?{'{'}userId{'}'}[&amp;from][&amp;to][&amp;limit]</code></p>
