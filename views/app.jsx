@@ -7,14 +7,23 @@ const App = () => {
   const [resultText, setResultText] = useState('');
   const [resultJson, setResultJson] = useState('');
   
+  const url = '/api/issues/apitest';
+  
   const handleSubmit = e => {
     e.preventDefault();
-    fetch('/api/convert?input='+ input)
-      .then(response => response.json())
-      .then((data) => {
-        setResultText(data.string)
-        setResultJson(JSON.stringify(data))
-      });
+    fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: JSON.stringify(e.target.value), // data can be `string` or {object}!
+      headers:{
+        'Content-Type': 'application/json'
+      }
+    })
+    .then(response => response.json())
+    .then((data) => {
+      setResultText(data.string)
+      setResultJson(JSON.stringify(data))
+    })
+    .catch(error => console.error('Error:', error));
   }
   
   return (
