@@ -23,12 +23,12 @@ const App = () => {
         <h3>User Stories</h3>
         <ol>
           <li>Prevent cross site scripting(XSS attack).</li>
-          <li>I can <b>POST</b> <code>/api/issues/{projectname}</code> with form data containing required <i>issue_title</i>, <i>issue_text</i>, <i>created_by</i>, and optional <i>assigned_to</i> and <i>status_text</i>.</li>
+          <li>I can <b>POST</b> <code>/api/issues/{'{'}projectname{'}'}</code> with form data containing required <i>issue_title</i>, <i>issue_text</i>, <i>created_by</i>, and optional <i>assigned_to</i> and <i>status_text</i>.</li>
           <li>The object saved (and returned) will include all of those fields (blank for optional no input) and also include <i>created_on</i>(date/time), <i>updated_on</i>(date/time), <i>open</i>(boolean, true for open, false for closed), and <i>_id</i>.</li>
-          <li>I can <b>PUT</b> <code>/api/issues/{projectname}</code> with a <i>_id</i> and any fields in the object with a value to object said object. Returned will be 'successfully updated' or 'could not update '+_id. This should always update <i>updated_on</i>. If no fields are sent return 'no updated field sent'.</li>
-          <li>I can <b>DELETE</b> <code>/api/issues/{projectname}</code> with a <i>_id</i> to completely delete an issue. If no _id is sent return '_id error', success: 'deleted '+_id, failed: 'could not delete '+_id.</li>
-          <li>I can <b>GET</b> <code>/api/issues/{projectname}</code> for an array of all issues on that specific project with all the information for each issue as was returned when posted.</li>
-          <li>I can filter my get request by also passing along any field and value in the query(ie. <code>/api/issues/{project}?open=false</code>). I can pass along as many fields/values as I want.</li>
+          <li>I can <b>PUT</b> <code>/api/issues/{'{'}projectname{'}'}</code> with a <i>_id</i> and any fields in the object with a value to object said object. Returned will be 'successfully updated' or 'could not update '+_id. This should always update <i>updated_on</i>. If no fields are sent return 'no updated field sent'.</li>
+          <li>I can <b>DELETE</b> <code>/api/issues/{'{'}projectname{'}'}</code> with a <i>_id</i> to completely delete an issue. If no _id is sent return '_id error', success: 'deleted '+_id, failed: 'could not delete '+_id.</li>
+          <li>I can <b>GET</b> <code>/api/issues/{'{'}projectname{'}'}</code> for an array of all issues on that specific project with all the information for each issue as was returned when posted.</li>
+          <li>I can filter my get request by also passing along any field and value in the query(ie. <code>/api/issues/{'{'}project{'}'}?open=false</code>). I can pass along as many fields/values as I want.</li>
           <li>All 11 functional tests are complete and passing.</li>
         </ol>
         <br/>
@@ -40,36 +40,8 @@ const App = () => {
         <br/><br/>
         <h2><a href='/apitest/'>EXAMPLE: Go to <i>/apitest/</i> project issues</a></h2>
       </div>
-      <hr >
-      <div id='testui' >
-        <h2 >API Tests:</h2>
-        <h3>Submit issue on <i>apitest</i></h3>
-        <form id="testForm" class="border">
-          <input type="text" name="issue_title" placeholder="*Title" required=''/><br/>
-          <textarea type="text" name="issue_text" placeholder="*Text" required=''></textarea><br/>
-          <input type="text" name="created_by" placeholder="*Created by" required=''/><br/>
-          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
-          <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
-          <button type="submit">Submit Issue</button>
-        </form><br/>
-        <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
-        <form id="testForm2" class="border">
-          <input type="text" name="_id" placeholder="*_id" required=''/><br/>
-          <input type="text" name="issue_title" placeholder="(opt)Title"/><br/>
-          <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea><br/>
-          <input type="text" name="created_by" placeholder="(opt)Created by"/><br/>
-          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
-          <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
-          <label><input type="checkbox" name="open" value={false}/> Check to close issue</label><br/>
-          <button type="submit">Submit Issue</button>
-        </form><br/>
-        <h3>Delete issue on <i>apitest</i></h3>
-        <form id="testForm3" class="border">
-          <input type="text" name="_id" placeholder="_id" required=''/><br/>
-          <button type="submit">Delete Issue</button>
-        </form>
-        <code id='jsonResult'></code>
-      </div>
+      <hr/ >
+      
     </main>
   )
 }
