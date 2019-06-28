@@ -67,7 +67,7 @@ module.exports = (app) => {
           status_text : status_text || '',
           open        : true
         };
-
+        console.log(issue)
         const { error } = validate(issue);
         if (error) return res.send(error.details[0].message);
 
@@ -76,6 +76,7 @@ module.exports = (app) => {
         if(!insertedIssue) return res.send('sorry could not add issue. try again! thanks')
         
         issue._id = insertedIssue.insertedId;
+        console.log(issue)
         res.json(issue);
 
       } catch(err) {
