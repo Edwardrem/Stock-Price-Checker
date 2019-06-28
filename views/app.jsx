@@ -12,13 +12,10 @@ const App = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     
-    console.log(data, JSON.stringify(data))
+    console.log(e.target, data, JSON.stringify(data))
     fetch(url, {
       method: 'POST', // or 'PUT'
       body: data, // data can be `string` or {object}!
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      }
     })
     .then(response => response.json())
     .then((data) => {
