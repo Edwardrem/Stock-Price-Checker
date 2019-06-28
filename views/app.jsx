@@ -12,11 +12,14 @@ const App = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     
-    console.log(e.target, data, data.getAll, JSON.stringify(data))
+    var object = {};
+    data.forEach((value, key) => {object[key] = value});
+    
+    console.log(e.target, data, object, JSON.stringify(data))
     for(let d of data) {console.log(d)}
     fetch(url, {
       method: 'POST', // or 'PUT'
-      body: data, // data can be `string` or {object}!
+      body: object, // data can be `string` or {object}!
     })
     .then(res => res.json())
     .then((data) => {
