@@ -56,6 +56,7 @@ module.exports = (app) => {
       try {
         const project = req.params.project;
         const {issue_title, issue_text, created_by, assigned_to, status_text} = req.body
+        console.log(req.body)
         const issue = {
           issue_title,
           issue_text,

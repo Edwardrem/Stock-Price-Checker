@@ -14,16 +14,16 @@ const App = () => {
     
     console.log(e.target, data, JSON.stringify(data))
     for(let d of data) {console.log(d)}
-    // fetch(url, {
-    //   method: 'POST', // or 'PUT'
-    //   body: JSON.stringify(data), // data can be `string` or {object}!
-    // })
-    // .then(response => response.json())
-    // .then((data) => {
-    //   setJsonResult(JSON.stringify(data))
-    //   console.log(data, JSON.stringify(data))
-    // })
-    // .catch(error => console.error('Error:', error));
+    fetch(url, {
+      method: 'POST', // or 'PUT'
+      body: data, // data can be `string` or {object}!
+    })
+    .then(res => res.json())
+    .then((data) => {
+      setJsonResult(JSON.stringify(data))
+      console.log(data, JSON.stringify(data))
+    })
+    .catch(error => console.error('Error:', error));
   }
   
   return (
