@@ -69,13 +69,13 @@ module.exports = (app) => {
         };
         console.log(issue)
         const { error } = validate(issue);
-        if (error) return res.json(error.details[0].message);
+        if (error) return res.send(error.details[0].message);
         console.log('1',issue)
         
         const collection = await connect(project);
-        const insertedIssue = collection.insertOne(issue)
+        const insertedIssue = await collection.insertOne(issue)
         console.log('3',insertedIssue)
-        if(!insertedIssue) return res.json('sorry could not add issue. try again! thanks')
+        if(!insertedIssue) return res.send('sorry could not add issue. try again! thanks')
         console.log('2',issue)
         
         issue._id = insertedIssue.insertedId;
