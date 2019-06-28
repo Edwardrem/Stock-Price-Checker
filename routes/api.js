@@ -56,7 +56,7 @@ module.exports = (app) => {
       try {
         const project = req.params.project;
         const {issue_title, issue_text, created_by, assigned_to, status_text} = req.body
-        console.log(req.body)
+        console.log(req.body, req.body.keys)
         const issue = {
           issue_title,
           issue_text,

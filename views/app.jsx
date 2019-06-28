@@ -12,7 +12,7 @@ const App = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     
-    console.log(e.target, data, JSON.stringify(data))
+    console.log(e.target, data, data.getAll, JSON.stringify(data))
     for(let d of data) {console.log(d)}
     fetch(url, {
       method: 'POST', // or 'PUT'
