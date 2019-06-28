@@ -56,16 +56,16 @@ const App = () => {
         <h2 >API Tests:</h2>
         <h3>Submit issue on <i>apitest</i></h3>
         <form id="testForm" onSubmit={handleSubmit}>
-          <input type="text" name="issue_title" placeholder="*Title" required=''/><br/>
-          <textarea type="text" name="issue_text" placeholder="*Text" required=''></textarea><br/>
-          <input type="text" name="created_by" placeholder="*Created by" required=''/><br/>
+          <input type="text" name="issue_title" placeholder="*Title" required/><br/>
+          <textarea type="text" name="issue_text" placeholder="*Text" required></textarea><br/>
+          <input type="text" name="created_by" placeholder="*Created by" required/><br/>
           <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
           <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
           <button type="submit">Submit Issue</button>
         </form><br/>
         <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
         <form id="testForm2" className="border">
-          <input type="text" name="_id" placeholder="*_id" required=''/><br/>
+          <input type="text" name="_id" placeholder="*_id" required/><br/>
           <input type="text" name="issue_title" placeholder="(opt)Title"/><br/>
           <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea><br/>
           <input type="text" name="created_by" placeholder="(opt)Created by"/><br/>
