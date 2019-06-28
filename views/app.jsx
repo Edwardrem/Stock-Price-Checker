@@ -19,7 +19,7 @@ const App = () => {
     for(let d of data) {console.log(d)}
     fetch(url, {
       method: 'POST', // or 'PUT'
-      body: object, // data can be `string` or {object}!
+      body: JSON.stringify(object), // data can be `string` or {object}!
       headers: {
           'Content-Type': 'application/json',
           // 'Content-Type': 'application/x-www-form-urlencoded',
