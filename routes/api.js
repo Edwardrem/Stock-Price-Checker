@@ -28,7 +28,7 @@ function validate(req) {
 }
 
 async function connect(project) {
-  const db = await MongoClient.connect(URL)
+  const db = await MongoClient.connect(URL, { useNewUrlParser: true })
   return db.collection(project);
 }
 

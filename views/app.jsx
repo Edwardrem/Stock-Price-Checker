@@ -40,8 +40,36 @@ const App = () => {
         <br/><br/>
         <h2><a href='/apitest/'>EXAMPLE: Go to <i>/apitest/</i> project issues</a></h2>
       </div>
-      <hr/ >
       
+      <div id='testui' >
+        <h2 >API Tests:</h2>
+        <h3>Submit issue on <i>apitest</i></h3>
+        <form id="testForm" className="border">
+          <input type="text" name="issue_title" placeholder="*Title" required=''/><br/>
+          <textarea type="text" name="issue_text" placeholder="*Text" required=''></textarea><br/>
+          <input type="text" name="created_by" placeholder="*Created by" required=''/><br/>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
+          <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
+          <button type="submit">Submit Issue</button>
+        </form><br/>
+        <h3>Update issue on <i>apitest</i> (Change any or all to update issue on the _id supplied)</h3>
+        <form id="testForm2" className="border">
+          <input type="text" name="_id" placeholder="*_id" required=''/><br/>
+          <input type="text" name="issue_title" placeholder="(opt)Title"/><br/>
+          <textarea type="text" name="issue_text" placeholder="(opt)Text"></textarea><br/>
+          <input type="text" name="created_by" placeholder="(opt)Created by"/><br/>
+          <input type="text" name="assigned_to" placeholder="(opt)Assigned to"/><br/>
+          <input type="text" name="status_text" placeholder="(opt)Status text"/><br/>
+          <label><input type="checkbox" name="open" value={false}/> Check to close issue</label><br/>
+          <button type="submit">Submit Issue</button>
+        </form><br/>
+        <h3>Delete issue on <i>apitest</i></h3>
+        <form id="testForm3" className="border">
+          <input type="text" name="_id" placeholder="_id" required=''/><br/>
+          <button type="submit">Delete Issue</button>
+        </form>
+        <code id='jsonResult'></code>
+      </div>
     </main>
   )
 }
