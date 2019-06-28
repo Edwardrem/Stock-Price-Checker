@@ -10,7 +10,7 @@ const App = () => {
   
   const handleSubmit = e => {
     e.preventDefault();
-    console.log(e.target.value)
+    console.log(e.target)
     // fetch(url, {
     //   method: 'POST', // or 'PUT'
     //   body: e.target.value, // data can be `string` or {object}!
