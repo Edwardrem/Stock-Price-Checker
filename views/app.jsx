@@ -17,13 +17,13 @@ const App = () => {
       method: 'POST', // or 'PUT'
       body: data, // data can be `string` or {object}!
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       }
     })
     .then(response => response.json())
     .then((data) => {
       setJsonResult(JSON.stringify(data))
-      console.log(data)
+      console.log(data, JSON.stringify(data))
     })
     .catch(error => console.error('Error:', error));
   }
@@ -55,7 +55,7 @@ const App = () => {
       <div id='testui' >
         <h2 >API Tests:</h2>
         <h3>Submit issue on <i>apitest</i></h3>
-        <form id="testForm" onSubmit={handleSubmit}>
+        <form id="testForm" name="testForm1" onSubmit={handleSubmit}>
           <input type="text" name="issue_title" placeholder="*Title" required/><br/>
           <textarea type="text" name="issue_text" placeholder="*Text" required></textarea><br/>
           <input type="text" name="created_by" placeholder="*Created by" required/><br/>
