@@ -20,6 +20,10 @@ const App = () => {
     fetch(url, {
       method: 'POST', // or 'PUT'
       body: object, // data can be `string` or {object}!
+      headers: {
+          'Content-Type': 'application/json',
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
     })
     .then(res => res.json())
     .then((data) => {
