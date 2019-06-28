@@ -17,7 +17,7 @@ const App = () => {
       method: 'POST', // or 'PUT'
       body: data, // data can be `string` or {object}!
       headers: {
-          'Content-Type': 'application/json',
+        'Content-Type': 'application/json',
       }
     })
     .then(response => response.json())
