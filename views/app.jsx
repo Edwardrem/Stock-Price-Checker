@@ -10,18 +10,20 @@ const App = () => {
   
   const handleSubmit = e => {
     e.preventDefault();
-    fetch(url, {
-      method: 'POST', // or 'PUT'
-      body: e.target.value, // data can be `string` or {object}!
-      headers:{
-        "Content-Type": "application/x-www-form-urlencoded",
-      }
-    })
-    .then(response => response.json())
-    .then((data) => {
-      setJsonResult(JSON.stringify(data))
-    })
-    .catch(error => console.error('Error:', error));
+    console.log(e.target.value)
+    // fetch(url, {
+    //   method: 'POST', // or 'PUT'
+    //   body: e.target.value, // data can be `string` or {object}!
+    //   headers:{
+    //     "Content-Type": "application/x-www-form-urlencoded",
+    //   }
+    // })
+    // .then(response => response.json())
+    // .then((data) => {
+    //   setJsonResult(JSON.stringify(data))
+    //   console.log(e.target.value)
+    // })
+    // .catch(error => console.error('Error:', error));
   }
   
   return (
