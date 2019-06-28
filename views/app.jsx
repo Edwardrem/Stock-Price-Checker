@@ -4,8 +4,7 @@ const {useState} = React;
 const App = () => {
   
   const [input, setInput] = useState('');
-  const [resultText, setResultText] = useState('');
-  const [resultJson, setResultJson] = useState('');
+  const [jsonResult, setJsonResult] = useState('');
   
   const url = '/api/issues/apitest';
   
@@ -13,15 +12,14 @@ const App = () => {
     e.preventDefault();
     fetch(url, {
       method: 'POST', // or 'PUT'
-      body: JSON.stringify(e.target.value), // data can be `string` or {object}!
+      body: e.target.value, // data can be `string` or {object}!
       headers:{
-        'Content-Type': 'application/json'
+        "Content-Type": "application/x-www-form-urlencoded",
       }
     })
     .then(response => response.json())
     .then((data) => {
-      setResultText(data.string)
-      setResultJson(JSON.stringify(data))
+      setJsonResult(JSON.stringify(data))
     })
     .catch(error => console.error('Error:', error));
   }
@@ -53,7 +51,7 @@ const App = () => {
       <div id='testui' >
         <h2 >API Tests:</h2>
         <h3>Submit issue on <i>apitest</i></h3>
-        <form id="testForm" className="border">
+        <form id="testForm" onSubmit={handleSubmit}>
           <input type="text" name="issue_title" placeholder="*Title" required=''/><br/>
           <textarea type="text" name="issue_text" placeholder="*Text" required=''></textarea><br/>
           <input type="text" name="created_by" placeholder="*Created by" required=''/><br/>
@@ -77,7 +75,7 @@ const App = () => {
           <input type="text" name="_id" placeholder="_id" required=''/><br/>
           <button type="submit">Delete Issue</button>
         </form>
-        <code id='jsonResult'></code>
+        <code id='jsonResult'>{jsonResult}</code>
       </div>
     </main>
   )
