@@ -2,143 +2,146 @@
 *
 *
 *       Complete the API routing below
-*
-*
+*       
+*       
 */
 
 'use strict';
 
-const expect = require('chai').expect;
-const MongoClient = require('mongodb').MongoClient;
-const ObjectId = require('mongodb').ObjectID;
+var expect = require('chai').expect;
+var MongoClient = require('mongodb').MongoClient;
+var ObjectId = require('mongodb').ObjectId;
 const Joi = require('joi');
 
-const URL = process.env.DB; //MongoClient.connect(CONNECTION_STRING, err, db)  => {});
+const URL = process.env.DB;
+//Example connection: MongoClient.connect(MONGODB_CONNECTION_STRING, function(err, db) {});
 
 function validate(req) {
   const schema = {
-    issue_title : Joi.string().min(3).max(50).required(),
-    issue_text  : Joi.string().min(3).max(255).required(),
-    created_by  : Joi.string().min(3).max(255).required(),
-    assigned_to : Joi.string().max(30).allow(''),
-    status_text : Joi.string().max(30).allow('')
+    title : Joi.string().min(3).max(50).required()
   };
-
-  return Joi.validate(req, schema, { stripUnknown: true });
+  return Joi.validate(req, schema);
 }
 
-async function connect(project) {
-  const db = await MongoClient.connect(URL, { useNewUrlParser: true })
-  return db.collection(project);
+async function connect() {
+  const db = await MongoClient.connect(URL)
+  return db.collection('books');
 }
 
-module.exports = (app) => {
+module.exports = function (app) {
 
-  app.route('/api/issues/:project')
-  
+  app.route('/api/books')
     .get(async (req, res) => {
+      try {
+        const collection = await connect();
+        let books = await collection.find().toArray()
+
+        books = books.map(elm => {
+          elm.commentcount = elm.comments.length
+          delete elm.comments;
+          return elm
+        })
+        res.json(books);
+        
+      } catch(err) {
+        res.json(err)
+      }
+    })
+    
+    .post(async (req, res) => {
       try{
-        const project = req.params.project;
-        const q = req.query;
+        const title = req.body.title;
+        if(!title) return res.send('missing title');
 
-        if(q._id) q._id = new ObjectId(q._id)
-        if(q.open) q.open = q.open === "true"
+        const { error } = validate({title: title});
+        if (error) return res.send(error.details[0].message);
 
-        const collection = await connect(project);
-        collection.find(q).toArray((err, docs) => res.json(docs));
+        const collection = await connect();
 
-      } catch(err){
+        const doc = {title:title, comments:[]};
+        const book = await collection.insert(doc)
+
+        if(!book) return res.send('sorry could not add book. try again! thanks')
+        res.json(book.ops[0]);
+        
+      } catch(err) {
+        res.json(err)
+      }
+    })
+    
+    .delete(async (req, res) => {
+      try {
+        const collection = await connect();
+        const drop = await collection.drop();
+
+        if (!drop) return res.send('sorry could not delete all book. try again! thanks');
+        res.send("complete delete successful");
+
+      } catch(err) {
+        res.json(err)
+      }
+    });
+
+
+
+  app.route('/api/books/:id')
+    .get(async (req, res) => {
+      try {
+        let id = req.params.id;
+
+        if(!id) return res.send('please enter an id.');
+        id = new ObjectId(id); 
+
+        const collection = await connect();
+        const book = await collection.find({_id:id}).toArray()
+        
+        if(book.length === 0) return res.send('no book exists');
+        res.json(book[0]);
+        
+      } catch(err) {
         res.json(err)
       }
     })
     
     .post(async (req, res) => {
       try {
-        const project = req.params.project;
-        const {issue_title, issue_text, created_by, assigned_to, status_text} = req.body
-        console.log(req.body)
-        const issue = {
-          issue_title,
-          issue_text,
-          created_by,
-          created_on  : new Date(),
-          updated_on  : new Date(),
-          assigned_to : assigned_to || '',
-          status_text : status_text || '',
-          open        : true
-        };
-        console.log(issue)
-        const { error } = validate(issue);
-        if (error) return res.send(error.details[0].message);
-        console.log('1',issue)
-        
-        const collection = await connect(project);
-        const insertedIssue = await collection.insertOne(issue)
-        console.log('3',insertedIssue)
-        if(!insertedIssue) return res.send('sorry could not add issue. try again! thanks')
-        console.log('2',issue)
-        
-        issue._id = insertedIssue.insertedId;
-        console.log(issue)
-        res.json(issue);
+        const comment = req.body.comment;
+        let id = req.params.id;
+
+        if(!id || !comment) return res.send('please enter an id and comment');
+        id = new ObjectId(id);
+
+        const collection = await connect();
+        const updatedBook = await collection.findAndModify(
+          {_id: id},
+          {},
+          {$push: { comments: comment }},
+          {new: true, upsert: false}
+        )
+        if(!updatedBook) return res.send('sorry could not add comment. try again! thanks')  
+        res.json(updatedBook.value);
 
       } catch(err) {
         res.json(err)
       }
-      
-    })
-    
-    .put(async (req, res) => {
-      try{
-        const project = req.params.project;
-        const id      = req.body._id;
-        let updates = req.body;
-        
-        delete updates._id;
-        for (let key in updates) { 
-          if (!updates[key]) delete updates[key] 
-        }
-        if(updates.open) updates.open = updates.open === "true"
-        if(Object.keys(updates).length === 0) return res.send('no updated field sent');
-        updates.updated_on = new Date();
-        
-        const collection = await connect(project);
-        const issue = await collection.findOne({_id : new ObjectId(id)})
-        if(!issue) return res.send('could not find ' + id)
-        
-        delete issue._id;
-        updates = {...issue, ...updates}
-        
-        const { error } = validate(updates);
-        if (error) return res.send(error.details[0].message);
-        
-        const update = await collection.update({_id : new ObjectId(id)}, updates)
-        if(!update) return res.send('could not update ' + id)
-
-        res.send('successfully updated')
-        
-      } catch(err){
-        res.json(err)
-      }
-      
     })
     
     .delete(async (req, res) => {
-      try{
-        const project = req.params.project;
-        const id = req.body._id;
+      try {
+        let id = req.params.id;
 
-        if(!id) return res.send('_id error');
+        if(!id) return res.send('please enter an id');
+        id = new ObjectId(id); 
 
-        const collection = await connect(project);
-        const deletedIssue = await collection.findAndRemove({_id: new ObjectId(id)});
+        const collection = await connect();
+        const deletedBook = collection.findOneAndDelete({_id:id})
 
-        if (!deletedIssue) return res.send('could not delete '+ id);
-        res.send('deleted '+ id) 
-        
+        if (!deletedBook) return res.send('could not delete '+ id);
+        res.send('delete successful') 
+
       } catch(err) {
         res.json(err)
       }
     });
-    
+  
 };
