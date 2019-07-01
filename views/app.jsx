@@ -18,13 +18,7 @@ const App = () => {
     
     console.log(e.target, data, object, JSON.stringify(data))
     for(let d of data) {console.log(d)}
-    fetch(url, {
-      method: 'POST', // or 'PUT'
-      body: JSON.stringify(object), // data can be `string` or {object}!
-      headers: {
-          'Content-Type': 'application/json',
-      },
-    })
+    fetch(url)
     .then(res => res.json())
     .then((data) => {
       setJsonResult(JSON.stringify(data))
