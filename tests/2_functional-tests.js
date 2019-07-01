@@ -3,7 +3,7 @@
 *
 *       FILL IN EACH FUNCTIONAL TEST BELOW COMPLETELY
 *       -----[Keep the tests in the same order!]-----
-*       
+*       (if additional are added, keep them at the very end!)
 */
 
 var chaiHttp = require('chai-http');
@@ -14,144 +14,121 @@ var server = require('../server');
 chai.use(chaiHttp);
 
 suite('Functional Tests', function() {
+    
+    suite('GET /api/stock-prices => stockData object', function() {
 
-  /*
-  * ----[EXAMPLE TEST]----
-  * Each test should completely test the response of the API end-point including response status code!
-  */
-  test('#example Test GET /api/books', function(done){
-     chai.request(server)
-      .get('/api/books')
-      .end(function(err, res){
-        assert.equal(res.status, 200);
-        assert.isArray(res.body, 'response should be an array');
-        assert.property(res.body[0], 'commentcount', 'should contain commentcount');
-        assert.property(res.body[0], 'title', 'should contain title');
-        assert.property(res.body[0], '_id', 'should contain _id');
-        done();
-      });
-  });
-  /*
-  * ----[END of EXAMPLE TEST]----
-  */
-
-  suite('Routing tests', function() {
-
-    let id;
-
-    suite('POST /api/books with title => create book object/expect book object', function() {
-      
-      test('Test POST /api/books with title', function(done) {
-        chai.request(server)
-          .post('/api/books')
-          .send({title: 'test book'})
-          .end((err, res) => {
-            assert.equal(res.status, 200);
-            assert.equal(res.body.title, 'test book');
+      test('1 stock', (done) => {
+       chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: 'goog'})
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(res.body.stockData.stock, 'GOOG');
+         
+          assert.property(res.body.stockData, 'stock');
+          assert.property(res.body.stockData, 'price');
+          assert.property(res.body.stockData, 'likes');
+         
+          assert.isNumber(res.body.stockData.likes, 'how many likes');
           
-            assert.isArray(res.body.comments, 'Comments should be an array');
-          
-            assert.property(res.body, 'comments', 'should have property comments');
-            assert.property(res.body, 'title', 'should have property title');
-            assert.property(res.body, '_id', 'should have property _id');
-
-            done();
-          });     
+          done();
+        });
       });
       
-      test('Test POST /api/books with no title given', function(done) {
-        chai.request(server)
-          .post('/api/books')
-          .end((err, res) => {
-            assert.equal(res.status, 200);
-            assert.equal(res.text, 'missing title');
+      let likes;
+      
+      test('1 stock with like', (done) => {
+       chai.request(server)
+        .get('/api/stock-prices')
+        .query({stock: 'goog', like: true})
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(res.body.stockData.stock, 'GOOG');
+         
+          assert.property(res.body.stockData, 'stock');
+          assert.property(res.body.stockData, 'price');
+          assert.property(res.body.stockData, 'likes');
+         
+          assert.isNumber(res.body.stockData.likes, 'how many likes');
           
-            done();
-          });       
+          assert.isAbove(res.body.stockData.likes, 0);
+         
+          likes = res.body.stockData.likes;
+         
+          done();
+        });
       });
       
-    });
-
-
-    suite('GET /api/books => array of books', function(){
-      
-      test('Test GET /api/books',  function(done){
+      test('1 stock with like again (ensure likes arent double counted)', (done) => {
         chai.request(server)
-          .get('/api/books')
-          .end((err, res) => {
-            assert.equal(res.status, 200);
+        .get('/api/stock-prices')
+        .query({stock: 'goog', like: true})
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(res.body.stockData.stock, 'GOOG');
+          assert.equal(res.body.stockData.likes, likes);
           
-            assert.isArray(res.body, 'response should be an array');
+          assert.property(res.body.stockData, 'stock');
+          assert.property(res.body.stockData, 'price');
+          assert.property(res.body.stockData, 'likes');
           
-            assert.property(res.body[0], 'commentcount', 'should have property commentcount');
-            assert.property(res.body[0], 'title', 'should have property title');
-            assert.property(res.body[0], '_id', 'should have property _id');
+          assert.isNumber(res.body.stockData.likes, 'how many likes');
           
-            id = res.body[0]._id;
-          
-            done();
-          });
-      });      
-      
-    });
-
-
-    suite('GET /api/books/[id] => book object with [id]', function(){
-      
-      test('Test GET /api/books/[id] with id not in db',  function(done){
-        chai.request(server)
-          .get('/api/books/012345678901234567891234')
-          .end((err, res) => {
-            assert.equal(res.status, 200);
-            assert.equal(res.text, 'no book exists');
-          
-            done();
-          });
+          done();
+        });
       });
       
-      test('Test GET /api/books/[id] with valid id in db',  function(done){
+      
+      test('2 stocks', (done) => {
         chai.request(server)
-          .get('/api/books/'+ id)
-          .end((err, res) => {
-            assert.equal(res.status, 200);
-            assert.equal(res.body._id, id);
+        .get('/api/stock-prices')
+        .query({stock: ['goog','msft']})
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(res.body.stockData[0].stock, 'GOOG');
+          assert.equal(res.body.stockData[1].stock, 'MSFT');
           
-            assert.isArray(res.body.comments, 'Comments should be an array');
+          assert.isArray(res.body.stockData);
           
-            assert.property(res.body, 'comments', 'should have property comments');
-            assert.property(res.body, 'title', 'should have property title');
-            assert.property(res.body, '_id', 'should have property _id');
-            
-            done();
-          });
+          assert.property(res.body.stockData[0], 'stock');
+          assert.property(res.body.stockData[0], 'price');
+          assert.property(res.body.stockData[0], 'rel_likes');
+          assert.property(res.body.stockData[1], 'stock');
+          assert.property(res.body.stockData[1], 'price');
+          assert.property(res.body.stockData[1], 'rel_likes');
+          
+          assert.isNumber(res.body.stockData[0].rel_likes, 'compare likes');
+          assert.isNumber(res.body.stockData[1].rel_likes, 'compare likes');
+          
+          done();
+        });
       });
       
-    });
-
-
-    suite('POST /api/books/[id] => add comment/expect book object with id', function(){
-      
-      test('Test POST /api/books/[id] with comment', function(done){
+      test('2 stocks with like', (done) => {
         chai.request(server)
-          .post('/api/books/'+ id)
-          .send({comment: 'test comment'})
-          .end((err, res) => {
-            assert.equal(res.status, 200);
+        .get('/api/stock-prices')
+        .query({stock: ['goog','msft'], like: true})
+        .end((err, res) => {
+          assert.equal(res.status, 200);
+          assert.equal(res.body.stockData[0].stock, 'GOOG');
+          assert.equal(res.body.stockData[1].stock, 'MSFT');
           
-            assert.isArray(res.body.comments, 'Comments should be an array');
+          assert.isArray(res.body.stockData);
           
-            assert.include(res.body.comments, 'test comment', 'Comments should include test comment');
+          assert.property(res.body.stockData[0], 'stock');
+          assert.property(res.body.stockData[0], 'price');
+          assert.property(res.body.stockData[0], 'rel_likes');
+          assert.property(res.body.stockData[1], 'stock');
+          assert.property(res.body.stockData[1], 'price');
+          assert.property(res.body.stockData[1], 'rel_likes');
           
-            assert.property(res.body, 'comments', 'should have property comments');
-            assert.property(res.body, 'title', 'should have property title');
-            assert.property(res.body, '_id', 'should have property _id');
+          assert.isNumber(res.body.stockData[0].rel_likes, 'compare likes');
+          assert.isNumber(res.body.stockData[1].rel_likes, 'compare likes');
           
-            done();
-          });     
+          done();
+        });
       });
       
     });
-
-  });
 
 });
