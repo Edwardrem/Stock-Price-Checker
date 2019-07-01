@@ -35,57 +35,46 @@ const App = () => {
   
   return (
     <main className='container'>
-      <div id="userstories">
-        <h2>User stories:</h2>
+      <div id='userstories'>
+        <h3>User Stories</h3>
         <ol>
-          <li>Nothing from my website will be cached in my client as a security measure.</li>
-          <li>I will see that the site is powered by 'PHP 4.2.0' even though it isn't as a security measure.</li>
-          <li>I can <b>post</b> a <code>title</code> to /api/books to add a book and returned will be the object with the <code>title</code> and a unique <code>_id</code>.</li>
-          <li>I can <b>get</b> /api/books to retrieve an aray of all books containing <code>title</code>, <code>_id</code>, & <code>commentcount</code>.</li>
-          <li>I can <b>get</b> /api/books/{'{'}_id{'}'} to retrieve a single object of a book containing <code>title</code>, <code>_id</code>, & an array of <code>comments</code> (empty array if no comments present).</li>
-          <li>I can <b>post</b> a <code>comment</code> to /api/books/{'{'}_id{'}'} to add a comment to a book and returned will be the books object similar to <b>get</b> /api/books/{'{'}_id{'}'}.</li>
-          <li>I can <b>delete</b> /api/books/{'{'}_id{'}'} to delete a book from the collection. Returned will be 'delete successful' if successful.</li>
-          <li>If I try to request a book that doesn't exist I will get a 'no book exists' message.</li>
-          <li>I can send a <b>delete</b> request to /api/books to delete all books in the database. Returned will be 'complete delete successful' if successful.</li>
-          <li>All 6 functional tests required are complete and passing.</li>
+          <li>Set the content security policies to only allow loading of scripts and css from your server.</li>
+          <li>I can <b>GET</b> <code>/api/stock-prices</code> with form data containing a Nasdaq <i>stock</i> ticker and recieve back an object <i>stockData</i>.</li>
+          <li>In <i>stockData</i>, I can see the <i>stock</i>(string, the ticker), <i>price</i>(decimal in string format), and <i>likes</i>(int).</li>
+          <li>I can also pass along field <i>like</i> as <b>true</b>(boolean) to have my like added to the stock(s). Only 1 like per ip should be accepted.</li>
+          <li>If I pass along 2 stocks, the return object will be an array with both stock's info but instead of <i>likes</i>, it will display <i>rel_likes</i>(the difference between the likes on both) on both.</li>
+          <li>A good way to receive current price is the following external API(replacing 'GOOG' with your stock): <code>https://finance.google.com/finance/info?q=NASDAQ%3aGOOG</code></li>
+          <li>All 5 functional tests are complete and passing.</li>
         </ol>
-        <br/>
-        <img src='https://cdn.gomix.com/d7932c52-287f-4dae-b175-631fef453000%2FScreen%20Shot%202016-12-16%20at%201.35.56%20AM.png' />
+        <h3>Example usage:</h3>
+        <code>/api/stock-prices?stock=goog</code><br/>
+        <code>/api/stock-prices?stock=goog&amp;like=true</code><br/>
+        <code>/api/stock-prices?stock=goog&amp;stock=msft</code><br/>
+        <code>/api/stock-prices?stock=goog&amp;stock=msft&amp;like=true</code><br/>
+        <h3>Example return:</h3>
+        <code>{'{'}"stockData":{'{'}"stock":"GOOG","price":"786.90","likes":1{'}}'}</code><br/>
+        <code>{'{'}"stockData":[{'{'}"stock":"MSFT","price":"62.30","rel_likes":-1},{'{'}"stock":"GOOG","price":"786.90","rel_likes":1{'}]}'}</code>
       </div>
       
       <hr />
-      <div id ='sampleposting'>
-        <h2 >Test API responses:</h2>
-        <form action="/api/books" method="post" class="border">
-          <h4>Test post to /api/books</h4>
-          Book Title:<br/>
-          <input type="text" name="title"/><br/>
-          <input type="submit" value="Submit"/>
-        </form>
-        <form action={"/api/books/"+bookId} method="post" id="commentTest" class="border">
-          <h4>Test post to /api/books/{'{'}bookid{'}'}</h4>
-          BookId to comment on:<br/>
-          <input type="text" name="id" id="idinputtest" onChange={e => setBookId(e.target.value)}/><br/>
-          Comment:<br/>
-          <input type="text" name="comment"/><br/>
-          <input type="submit" value="Submit"/>
-        </form>
-      </div>
-      <hr />
-      <div id='sampleui'>
-        <h2>Sample Front-End:</h2>
-        <form id="newBookForm" class="border">
-          <input type="text" id="bookTitleToAdd" name="title" placeholder="New Book Title" />
-          <button type="submit" value="Submit" id="newBook">Submit New Book!</button>
-        </form>
-        <div id='display'></div>          
-        <div id='bookDetail' class='border'>
-          <p id='detailTitle'>Select a book to see it's details and comments</p>
-          <ol id='detailComments'></ol>
-        </div>
-        <button id='deleteAllBooks'>Delete all books...</button>
-      </div>
-      <hr />
+    <div id='testui'>
+      <h2 >Front-End:</h2>
+      <h3>Get single price and total likes</h3>
+      <form id="testForm2" class="border">
+        <input type="text" name="stock" placeholder="goog"  required/>
+        <input type="checkbox" name="like" value={true}/> Like?<br>
+        <input type="submit">Get Price!</input>
+      </form>
+      <h3>Compare and get relative likes</h3>
+      <form id="testForm" class="border">
+        <input type="text" name="stock" placeholder="goog" style="width: 100px" required/>
+        <input type="text" name="stock" placeholder="msft" style="width: 100px" required>/
+        <input type="checkbox" name="like" value=true/> Like both?<br/>
+        <input type="submit">Get Price!</input>
+      </form>
+      <code id='jsonResult' style='padding-top: 20px;display: block;'></code>
+    </div>
+    <hr />
     </main>
   )
 }
