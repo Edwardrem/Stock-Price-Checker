@@ -53,7 +53,7 @@ const App = () => {
         <img src='https://cdn.gomix.com/d7932c52-287f-4dae-b175-631fef453000%2FScreen%20Shot%202016-12-16%20at%201.35.56%20AM.png' />
       </div>
       
-      <hr >
+      <hr />
       <div id ='sampleposting'>
         <h2 >Test API responses:</h2>
         <form action="/api/books" method="post" class="border">
@@ -63,7 +63,7 @@ const App = () => {
           <input type="submit" value="Submit"/>
         </form>
         <form action="" method="post" id="commentTest" class="border">
-          <h4>Test post to /api/books/{bookid}</h4>
+          <h4>Test post to /api/books/{'{'}bookid{'}'}</h4>
           BookId to comment on:<br/>
           <input type="text" name="id" value="" id="idinputtest"/><br/>
           Comment:<br/>
@@ -71,7 +71,7 @@ const App = () => {
           <input type="submit" value="Submit"/>
         </form>
       </div>
-      
+      <hr />
       <div id='sampleui'>
         <h2>Sample Front-End:</h2>
         <form id="newBookForm" class="border">
@@ -85,7 +85,7 @@ const App = () => {
         </div>
         <button id='deleteAllBooks'>Delete all books...</button>
       </div>
-
+      <hr />
     </main>
   )
 }
