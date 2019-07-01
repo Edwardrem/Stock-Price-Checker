@@ -53,39 +53,39 @@ const App = () => {
         <img src='https://cdn.gomix.com/d7932c52-287f-4dae-b175-631fef453000%2FScreen%20Shot%202016-12-16%20at%201.35.56%20AM.png' />
       </div>
       
-      <hr style='margin: 50px'>
-    <div id ='sampleposting'>
-      <h2 style="text-align: left">Test API responses:</h2>
-      <form action="/api/books" method="post" class="border">
-        <h4>Test post to /api/books</h4>
-        Book Title:<br>
-        <input type="text" name="title" value=""><br>
-        <input type="submit" value="Submit">
-      </form>
-      <form action="" method="post" id="commentTest" class="border">
-        <h4>Test post to /api/books/{bookid}</h4>
-        BookId to comment on:<br>
-        <input type="text" name="id" value="" id="idinputtest"><br>
-        Comment:<br>
-        <input type="text" name="comment" value=""><br>
-        <input type="submit" value="Submit">
-      </form>
-    </div>
-    <hr style='margin: 50px'>
-    <div id='sampleui'>
-      <h2 style="text-align: left">Sample Front-End:</h2>
-      <form id="newBookForm" class="border">
-        <input type="text" id="bookTitleToAdd" name="title" placeholder="New Book Title" style="width: 295px">
-        <button type="submit" value="Submit" id="newBook">Submit New Book!</button>
-      </form>
-      <div id='display'></div>          
-      <div id='bookDetail' class='border'>
-        <p id='detailTitle'>Select a book to see it's details and comments</p>
-        <ol id='detailComments'></ol>
+      <hr >
+      <div id ='sampleposting'>
+        <h2 >Test API responses:</h2>
+        <form action="/api/books" method="post" class="border">
+          <h4>Test post to /api/books</h4>
+          Book Title:<br/>
+          <input type="text" name="title" value=""/><br/>
+          <input type="submit" value="Submit"/>
+        </form>
+        <form action="" method="post" id="commentTest" class="border">
+          <h4>Test post to /api/books/{bookid}</h4>
+          BookId to comment on:<br/>
+          <input type="text" name="id" value="" id="idinputtest"/><br/>
+          Comment:<br/>
+          <input type="text" name="comment" value=""/><br/>
+          <input type="submit" value="Submit"/>
+        </form>
       </div>
-      <button id='deleteAllBooks'>Delete all books...</button>
-    </div>
-    <hr />
+      
+      <div id='sampleui'>
+        <h2>Sample Front-End:</h2>
+        <form id="newBookForm" class="border">
+          <input type="text" id="bookTitleToAdd" name="title" placeholder="New Book Title" />
+          <button type="submit" value="Submit" id="newBook">Submit New Book!</button>
+        </form>
+        <div id='display'></div>          
+        <div id='bookDetail' class='border'>
+          <p id='detailTitle'>Select a book to see it's details and comments</p>
+          <ol id='detailComments'></ol>
+        </div>
+        <button id='deleteAllBooks'>Delete all books...</button>
+      </div>
+
     </main>
   )
 }
