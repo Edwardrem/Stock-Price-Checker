@@ -4,7 +4,7 @@ const {useState} = React;
 const App = () => {
   
   const [input, setInput] = useState('');
-  const [id, setId] = useState('');
+  const [bookId, setBookId] = useState('');
   const [jsonResult, setJsonResult] = useState('');
   
   const url = '/api/issues/apitest';
@@ -62,12 +62,12 @@ const App = () => {
           <input type="text" name="title"/><br/>
           <input type="submit" value="Submit"/>
         </form>
-        <form action={"/api/books"+id} method="post" id="commentTest" class="border">
+        <form action={"/api/books/"+bookId} method="post" id="commentTest" class="border">
           <h4>Test post to /api/books/{'{'}bookid{'}'}</h4>
           BookId to comment on:<br/>
-          <input type="text" name="id" value="" id="idinputtest"/><br/>
+          <input type="text" name="id" id="idinputtest" onChange={e => setBookId(e.target.value)}/><br/>
           Comment:<br/>
-          <input type="text" name="comment" value=""/><br/>
+          <input type="text" name="comment"/><br/>
           <input type="submit" value="Submit"/>
         </form>
       </div>
