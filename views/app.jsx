@@ -53,7 +53,7 @@ const App = () => {
         <code>/api/stock-prices?stock=goog&amp;stock=msft&amp;like=true</code><br/>
         <h3>Example return:</h3>
         <code>{'{'}"stockData":{'{'}"stock":"GOOG","price":"786.90","likes":1{'}}'}</code><br/>
-        <code>{'{'}"stockData":[{'{'}"stock":"MSFT","price":"62.30","rel_likes":-1},{'{'}"stock":"GOOG","price":"786.90","rel_likes":1{'}]}'}</code>
+        <code>{'{'}"stockData":[{'{'}"stock":"MSFT","price":"62.30","rel_likes":-1{'}'},{'{'}"stock":"GOOG","price":"786.90","rel_likes":1{'}]}'}</code>
       </div>
       
       <hr />
@@ -62,17 +62,17 @@ const App = () => {
       <h3>Get single price and total likes</h3>
       <form id="testForm2" class="border">
         <input type="text" name="stock" placeholder="goog"  required/>
-        <input type="checkbox" name="like" value={true}/> Like?<br>
-        <input type="submit">Get Price!</input>
+        <input type="checkbox" name="like" value={true}/> Like?<br/>
+        <input type="submit" value="Get Price!"/>
       </form>
       <h3>Compare and get relative likes</h3>
       <form id="testForm" class="border">
-        <input type="text" name="stock" placeholder="goog" style="width: 100px" required/>
-        <input type="text" name="stock" placeholder="msft" style="width: 100px" required>/
-        <input type="checkbox" name="like" value=true/> Like both?<br/>
-        <input type="submit">Get Price!</input>
+        <input type="text" name="stock" placeholder="goog"  required/>
+        <input type="text" name="stock" placeholder="msft"  required/>
+        <input type="checkbox" name="like" value={true}/> Like both?<br/>
+        <input type="submit" value="Get Price!"/>
       </form>
-      <code id='jsonResult' style='padding-top: 20px;display: block;'></code>
+      <code id='jsonResult'></code>
     </div>
     <hr />
     </main>
