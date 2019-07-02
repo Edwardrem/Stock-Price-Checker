@@ -23,9 +23,7 @@ const App = () => {
     
     const q = queryString.stringify(obj);
     
-    console.log(e.target, data, obj, JSON.stringify(data), q)
-    for(let d of data) {console.log(d)}
-    fetch(url)
+    fetch(url + q)
     .then(res => res.json())
     .then((data) => {
       setJsonResult(JSON.stringify(data))
