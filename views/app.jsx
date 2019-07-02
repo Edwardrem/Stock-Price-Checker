@@ -9,7 +9,7 @@ const App = () => {
   const [bookId, setBookId] = useState('');
   const [jsonResult, setJsonResult] = useState('');
   
-  const url = '/api/issues/apitest';
+  const url = '/api/stock-prices?';
   
   const handleSubmit = e => {
     e.preventDefault();
@@ -18,7 +18,7 @@ const App = () => {
     var obj = {};
     data.forEach((value, key) => {
       if(obj[key]) obj[key] = [].concat(obj[key], value)
-      obj[key] = value
+      else obj[key] = value
     });
     
     const q = queryString.stringify(obj);
