@@ -14,7 +14,10 @@ const App = () => {
     const data = new FormData(e.target);
     
     var object = {};
-    data.forEach((value, key) => {object[key] = value});
+    data.forEach((value, key) => {
+      if(object[key]) object[key] = [].concat(object[key], value)
+      object[key] = value
+    });
     
     console.log(e.target, data, object, JSON.stringify(data))
     for(let d of data) {console.log(d)}
