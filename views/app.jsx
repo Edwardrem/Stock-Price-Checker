@@ -1,4 +1,6 @@
 const React = require('react');
+const queryString = require('query-string');
+
 const {useState} = React;
 
 const App = () => {
@@ -19,7 +21,9 @@ const App = () => {
       obj[key] = value
     });
     
-    console.log(e.target, data, obj, JSON.stringify(data))
+    const q = queryString.stringify(obj);
+    
+    console.log(e.target, data, obj, JSON.stringify(data), q)
     for(let d of data) {console.log(d)}
     fetch(url)
     .then(res => res.json())
@@ -63,7 +67,7 @@ const App = () => {
         <input type="submit" value="Get Price!"/>
       </form>
       <h3>Compare and get relative likes</h3>
-      <form id="testForm" class="border">
+      <form id="testForm" class="border" onSubmit={handleSubmit}>
         <input type="text" name="stock" placeholder="goog"  required/>
         <input type="text" name="stock" placeholder="msft"  required/>
         <input type="checkbox" name="like" value={true}/> Like both?<br/>

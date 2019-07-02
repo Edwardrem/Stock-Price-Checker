@@ -9,6 +9,7 @@ dependencies:
   mocha: 6.1.4
   mongodb: 3.2.7
   mongoose: 5.6.2
+  query-string: 6.8.1
   react: 16.8.6
   react-dom: 16.8.6
   webpack: 4.30.0
@@ -3352,6 +3353,16 @@ packages:
       node: '>=0.6'
     resolution:
       integrity: sha512-VCdBRNFTX1fyE7Nb6FYoURo/SPe62QCaAyzJvUjwRaIsc+NePBEniHlvxFmmX56+HZphIGtV0XeCirBtpDrTyQ==
+  /query-string/6.8.1:
+    dependencies:
+      decode-uri-component: 0.2.0
+      split-on-first: 1.1.0
+      strict-uri-encode: 2.0.0
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-g6y0Lbq10a5pPQpjlFuojfMfV1Pd2Jw9h75ypiYPPia3Gcq2rgkKiIwbkS6JxH7c5f5u/B/sB+d13PU+g1eu4Q==
   /querystring-es3/0.2.1:
     dev: false
     engines:
@@ -3870,6 +3881,12 @@ packages:
     optional: true
     resolution:
       integrity: sha1-/0rm5oZWBWuks+eSqzM004JzyhE=
+  /split-on-first/1.1.0:
+    dev: false
+    engines:
+      node: '>=6'
+    resolution:
+      integrity: sha512-43ZssAJaMusuKWL8sKUBQXHWOpq8d6CfN/u1p4gUzfJkM05C8rxTmYrkIPTXapZpORA6LkkzcUulJ8FqA7Uudw==
   /split-string/3.1.0:
     dependencies:
       extend-shallow: 3.0.2
@@ -3960,6 +3977,12 @@ packages:
     dev: false
     resolution:
       integrity: sha1-1cdSgl5TZ+eG944Y5EXqIjoVWVI=
+  /strict-uri-encode/2.0.0:
+    dev: false
+    engines:
+      node: '>=4'
+    resolution:
+      integrity: sha1-ucczDHBChi9rFC3CdLvMWGbONUY=
   /string-width/1.0.2:
     dependencies:
       code-point-at: 1.1.0
@@ -4627,6 +4650,7 @@ specifiers:
   mocha: ^6.1.4
   mongodb: ^3.2.6
   mongoose: ^5.6.2
+  query-string: ^6.8.1
   react: ^16.8.6
   react-dom: ^16.8.6
   webpack: ^4.30.0
