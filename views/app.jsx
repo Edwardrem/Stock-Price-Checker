@@ -13,13 +13,13 @@ const App = () => {
     e.preventDefault();
     const data = new FormData(e.target);
     
-    var object = {};
+    var obj = {};
     data.forEach((value, key) => {
-      if(object[key]) object[key] = [].concat(object[key], value)
-      object[key] = value
+      if(obj[key]) obj[key] = [].concat(obj[key], value)
+      obj[key] = value
     });
     
-    console.log(e.target, data, object, JSON.stringify(data))
+    console.log(e.target, data, obj, JSON.stringify(data))
     for(let d of data) {console.log(d)}
     fetch(url)
     .then(res => res.json())
@@ -57,7 +57,7 @@ const App = () => {
     <div id='testui'>
       <h2 >Front-End:</h2>
       <h3>Get single price and total likes</h3>
-      <form id="testForm2" class="border">
+      <form id="testForm2" class="border" onSubmit={handleSubmit}>
         <input type="text" name="stock" placeholder="goog"  required/>
         <input type="checkbox" name="like" value={true}/> Like?<br/>
         <input type="submit" value="Get Price!"/>
