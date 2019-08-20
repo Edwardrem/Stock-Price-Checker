@@ -10,25 +10,19 @@ const UserStory = () => {
         <h2>User Story</h2>
         <ol>
           
-          <li>Nothing from my website will be cached in my client as a security measure.</li>
+          <li>Set the content security policies to only allow loading of scripts and css from your server.</li>
           
-          <li>I will see that the site is powered by 'PHP 4.2.0' even though it isn't as a security measure.</li>
+          <li>I can <b>GET</b> <code>/api/stock-prices</code> with form data containing a Nasdaq <i>stock</i> ticker and recieve back an object <i>stockData</i>.</li>
           
-          <li>I can <b>post</b> a <code>title</code> to /api/books to add a book and returned will be the object with the <code>title</code> and a unique <code>_id</code>.</li>
+          <li>In <i>stockData</i>, I can see the <i>stock</i>(string, the ticker), <i>price</i>(decimal in string format), and <i>likes</i>(int).</li>
           
-          <li>I can <b>get</b> /api/books to retrieve an aray of all books containing <code>title</code>, <code>_id</code>, & <code>commentcount</code>.</li>
+          <li>I can also pass along field <i>like</i> as <b>true</b>(boolean) to have my like added to the stock(s). Only 1 like per ip should be accepted.</li>
+         
+          <li>If I pass along 2 stocks, the return object will be an array with both stock's info but instead of <i>likes</i>, it will display <i>rel_likes</i>(the difference between the likes on both) on both.</li>
           
-          <li>I can <b>get</b> /api/books/{'{'}_id{'}'} to retrieve a single object of a book containing <code>title</code>, <code>_id</code>, & an array of <code>comments</code> (empty array if no comments present).</li>
-          
-          <li>I can <b>post</b> a <code>comment</code> to /api/books/{'{'}_id{'}'} to add a comment to a book and returned will be the books object similar to <b>get</b> /api/books/{'{'}_id{'}'}.</li>
-          
-          <li>I can <b>delete</b> /api/books/{'{'}_id{'}'} to delete a book from the collection. Returned will be 'delete successful' if successful.</li>
-          
-          <li>If I try to request a book that doesn't exist I will get a 'no book exists' message.</li>
-          
-          <li>I can send a <b>delete</b> request to /api/books to delete all books in the database. Returned will be 'complete delete successful' if successful.</li>
-          
-          <li>All 6 functional tests required are complete and passing.</li>
+          <li>A good way to receive current price is the following external API(replacing 'GOOG' with your stock): <code>https://finance.google.com/finance/info?q=NASDAQ%3aGOOG</code></li>
+         
+          <li>All 5 functional tests are complete and passing.</li>
           
         </ol>
       </div>      
