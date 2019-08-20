@@ -20,23 +20,17 @@ app.use(cors({origin: '*'})); //For FCC testing purposes only
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// http://expressjs.com/en/starter/basic-routing.html
-app.get("/", function(request, response) {
-  response.sendFile(__dirname + '/views/index.html');
-});
-
 //For FCC testing purposes
 fccTestingRoutes(app);
 
 //Routing for API 
 apiRoutes(app);  
-    
-//404 Not Found Middleware
-app.use(function(req, res, next) {
-  res.status(404)
-    .type('text')
-    .send('Not Found');
+
+// http://expressjs.com/en/starter/basic-routing.html
+app.get("*", function(request, response) {
+  response.sendFile(__dirname + '/views/index.html');
 });
+
 
 app.use((error, request, response, next) => {
   return response.status(error.status || 500).json({
