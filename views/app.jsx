@@ -59,13 +59,13 @@ const App = () => {
     <div id='testui'>
       <h2 >Front-End:</h2>
       <h3>Get single price and total likes</h3>
-      <form id="testForm2" class="border" onSubmit={handleSubmit}>
+      <form id="testForm2" className="border" onSubmit={handleSubmit}>
         <input type="text" name="stock" placeholder="goog"  required/>
         <input type="checkbox" name="like" value={true}/> Like?<br/>
         <input type="submit" value="Get Price!"/>
       </form>
       <h3>Compare and get relative likes</h3>
-      <form id="testForm" class="border" onSubmit={handleSubmit}>
+      <form id="testForm" className="border" onSubmit={handleSubmit}>
         <input type="text" name="stock" placeholder="goog"  required/>
         <input type="text" name="stock" placeholder="msft"  required/>
         <input type="checkbox" name="like" value={true}/> Like both?<br/>
