@@ -42,7 +42,7 @@ const App = () => {
 
             <form className="submit-book-form" onSubmit={handleSubmit}>
 
-              <input className="form-title" type="text" name="title" placeholder="*Book Title" required/>
+              <input className="form-title" type="text" name="stock" placeholder="goog"  required/>
               <input className="form-submit" type="submit" value="Add Book"/>
 
             </form>
