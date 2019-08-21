@@ -320,8 +320,8 @@ nav {
   padding: 0 5px;
 }
 
-.submit-book-form {
-  max-width: 900px;
+.submit-price-form {
+  max-width: 500px;
   margin: 0 auto;
   background-color: transparent;
   display: grid;
@@ -375,127 +375,21 @@ nav {
   }
 }
 
+// Output 
 
-// Board
-
-.board {
+.output {
+  max-width: 500px;
+  margin: 0 auto;
   text-align: center;
-  background: white;
-}
-
-
-
-// Books
-
-.book {
-  border: 1px solid #e6e6e6;
-  border-bottom: 1px solid #949292;
-  padding: 10px;
-  margin: 10px auto;
-  max-width: 900px;
-  text-align: right;
-  position: relative;
-}
-
-.book:last-child {
-  margin-bottom: 0;
-}
-
-.books {
-  padding: 0 5px;
-}
-
-.book-title {
-  padding: 10px;
-  text-align: left;
-}
-
-.delete, .update {
-  color: #919191;
-  padding: 0 10px;
-  font-size: 12px;
-}
-
-.delete:hover {
-  color: red;
-}
-
-.comment {
-  border: 1px solid #e9e9e9;
-  border-left: 2px solid purple;
-  margin: 10px;
-  padding: 10px;
-  position: relative;
-}
-
-.comment-title {
-  padding: 10px;
-  text-align: left;
-  font-weight: bold;
-}
-
-.comment-text {
-  font-size: 18px;
-  text-align: left;
-  padding: 10px;
-  padding-bottom: 15px;
-}
-
-// Modal
-
-.modal {
-  background: #474747e0;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  position: absolute;
-  text-align: center;
-  z-index: 1;
   
-  h3 {
-    color: white;
-    padding-bottom: 10px;
-    padding-top: 25px;
-  }
-  
-  form {
-    display: inline-block;
-    width: auto;
+  pre {
+    margin: 0 5px !important;
+    border-radius: 5px;
+    text-align: left;
+    padding: 10px;
+    font-size: 16px;
   }
 }
-
-.modal-btn {
-  padding: 10px;
-  margin: 10px;
-  background: #3e3e3e;
-  border-bottom: 1px solid #9f9f9f;
-  color: white;
-  width: auto;
-  display: inline-block;
-  font-size: 14px;
-  cursor: pointer;
-  transition: .5s opacity;
-  
-  &:hover {
-    background: lighten( #3e3e3e, 5 )
-  }
-  
-  &:disabled {
-    background: #8a8a8a;
-    cursor: unset;
-  }
-}
-
-.modal-input {
-  display: inline-block;
-  width: 130px;
-  padding: 10px;
-  margin-right: -10px;
-  margin-left: 10px;
-  transition: .5s opacity;
-}
-
 
 
 // User Story

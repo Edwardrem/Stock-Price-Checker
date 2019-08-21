@@ -37,7 +37,7 @@ const App = ({setResult}) => {
 
         <div className="form-container">
 
-            <form className="submit-book-form" onSubmit={handleSubmit}>
+            <form className="submit-price-form" onSubmit={handleSubmit}>
 
               <input className="form-stock" type="text" name="stock" placeholder="goog"  required/>
               <label>
@@ -57,7 +57,7 @@ const App = ({setResult}) => {
       
       <div className="form-container">
         
-          <form className="submit-book-form" onSubmit={handleSubmit}>
+          <form className="submit-compare-form" onSubmit={handleSubmit}>
             
             <input className="form-stock" type="text" name="stock" placeholder="goog"  required/>
             <input className="form-stock" type="text" name="stock" placeholder="msft"  required/>
