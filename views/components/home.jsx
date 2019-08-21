@@ -10,7 +10,7 @@ const Home = () => {
   return (
     <div className="inner-container">
       
-      <AppTitle title={<h1>Personal Library</h1>} />
+      <AppTitle title={<h1>Stock Price Checker</h1>} />
      
       
     </div>

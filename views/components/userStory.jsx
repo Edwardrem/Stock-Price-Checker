@@ -5,7 +5,7 @@ const UserStory = () => {
   return (
     <div className="inner-container">
       
-      <AppTitle title={<h1>Personal Library</h1>} />
+      <AppTitle title={<h1>Stock Price Checker</h1>} />
       <div className="user-story" >
         <h2>User Story</h2>
         <ol>
