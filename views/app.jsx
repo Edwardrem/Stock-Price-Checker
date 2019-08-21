@@ -1,6 +1,5 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import { ToastContainer } from "react-toastify";
 
 import NavBar       from './components/navBar.jsx';
 import Footer       from './components/footer.jsx';
@@ -9,7 +8,7 @@ import UserStory    from './components/userStory.jsx';
 import CodeSolution from './components/codeSolution.jsx';
 import NotFound     from './components/notFound.jsx';
 
-import 'react-toastify/dist/ReactToastify.css';
+import 'react-json-pretty/themes/monikai.css';
 import './app.scss';
 
 const App = () => {
@@ -19,7 +18,6 @@ const App = () => {
       
       <div id="app" className="app">
         
-        <ToastContainer position="top-center"/>
         <NavBar />
         
         <main className="container">
