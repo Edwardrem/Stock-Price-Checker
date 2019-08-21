@@ -3,11 +3,8 @@ const queryString = require('query-string');
 
 const {useState} = React;
 
-const App = () => {
+const App = ({setResult}) => {
   
-  const [input, setInput] = useState('');
-  const [bookId, setBookId] = useState('');
-  const [jsonResult, setJsonResult] = useState('');
   
   const url = '/api/stock-prices?';
   
@@ -26,7 +23,7 @@ const App = () => {
     fetch(url + q)
     .then(res => res.json())
     .then((data) => {
-      setJsonResult(JSON.stringify(data))
+      setResult(data)
       console.log(data, JSON.stringify(data))
     })
     .catch(error => console.error('Error:', error));

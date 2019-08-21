@@ -15,9 +15,9 @@ dependencies:
   query-string: 6.8.1
   react: 16.8.6
   react-dom: 16.8.6
+  react-json-pretty: 2.1.0
   react-router-dom: 5.0.1
   react-syntax-highlighter: 11.0.2
-  react-toastify: 5.3.2
   sass-loader: 7.3.1
   style-loader: 0.23.1
   zombie: 6.1.4
@@ -1629,10 +1629,6 @@ packages:
       node: '>=0.10.0'
     resolution:
       integrity: sha512-qOhPa/Fj7s6TY8H8esGu5QNpMMQxz79h+urzrNYN6mn+9BnxlDGf5QZ+XeCDsxSjPqsSR56XOZOJmpeurnLMeg==
-  /classnames/2.2.6:
-    dev: false
-    resolution:
-      integrity: sha512-JR/iSQOSt+LQIWwrwEzJ9uk0xfN3mTVYMwt1Ir5mUcSN6pU+V4zQFFaJsclJbPuAUQH+yfWef6tm7l1quW3C8Q==
   /clipboard/2.0.4:
     dependencies:
       good-listener: 1.2.2
@@ -2101,12 +2097,6 @@ packages:
     dev: false
     resolution:
       integrity: sha1-YN20V3dOF48flBXwyrsOhbCzALI=
-  /dom-helpers/3.4.0:
-    dependencies:
-      '@babel/runtime': 7.5.5
-    dev: false
-    resolution:
-      integrity: sha512-LnuPJ+dwqKDIyotW1VzmOZ5TONUN7CwkCR5hrgawTUbkBGYdeoNLZo6nNfGkCrjtE1nXXaj7iMMpDa8/d9WoIA==
   /domain-browser/1.2.0:
     dev: true
     engines:
@@ -4969,10 +4959,15 @@ packages:
     dev: false
     resolution:
       integrity: sha512-tJBzzzIgnnRfEm046qRcURvwQnZVXmuCbscxUO5RWrGTXpon2d4c8mI0D8WE6ydVIm29JiLB6+RslkIvym9Rjw==
-  /react-lifecycles-compat/3.0.4:
+  /react-json-pretty/2.1.0:
+    dependencies:
+      prop-types: 15.7.2
     dev: false
+    peerDependencies:
+      react: '>=15.0'
+      react-dom: '>=15.0'
     resolution:
-      integrity: sha512-fBASbA6LnOU9dOU2eW7aQ8xmYBSXUIWr+UmF9b1efZBazGNO+rcXT/icdKnYm2pTwcRylVUYwW7H1PHfLekVzA==
+      integrity: sha512-TG5Ore8TWBrLydZ4Rz9TaifIOCL7EFXSFQBdXTY/lI/7Q5L4JJHvWXPF3/DXZOLteuW0pZ+g6gjNq0elGFAMvA==
   /react-router-dom/5.0.1:
     dependencies:
       '@babel/runtime': 7.5.5
@@ -5016,30 +5011,6 @@ packages:
       react: '>= 0.14.0'
     resolution:
       integrity: sha512-kqmpM2OH5OodInbEADKARwccwSQWBfZi0970l5Jhp4h39q9Q65C4frNcnd6uHE5pR00W8pOWj9HDRntj2G4Rww==
-  /react-toastify/5.3.2:
-    dependencies:
-      '@babel/runtime': 7.5.5
-      classnames: 2.2.6
-      prop-types: 15.7.2
-      react-transition-group: 2.9.0
-    dev: false
-    peerDependencies:
-      react: '>=15.0.0'
-      react-dom: '>=15.0.0'
-    resolution:
-      integrity: sha512-YHTTey7JWqXVkkBIeJ34PAvQELmGfLEGCx9bu68aIZYd+kRU2u9k/nG3AydgbX/uevIb4QNpeeE98DjkooMs5w==
-  /react-transition-group/2.9.0:
-    dependencies:
-      dom-helpers: 3.4.0
-      loose-envify: 1.4.0
-      prop-types: 15.7.2
-      react-lifecycles-compat: 3.0.4
-    dev: false
-    peerDependencies:
-      react: '>=15.0.0'
-      react-dom: '>=15.0.0'
-    resolution:
-      integrity: sha512-+HzNTCHpeQyl4MJ/bdE0u6XRMe9+XG/+aL4mCxVN4DnPBQ0/5bfHWPDuOZUzYdMj94daZaZdCCc1Dzt9R/xSSg==
   /react/16.8.6:
     dependencies:
       loose-envify: 1.4.0
@@ -6673,9 +6644,9 @@ specifiers:
   query-string: ^6.8.1
   react: ^16.8.6
   react-dom: ^16.8.6
+  react-json-pretty: ^2.1.0
   react-router-dom: ^5.0.0
   react-syntax-highlighter: ^11.0.2
-  react-toastify: ^5.3.2
   sass-loader: ^7.1.0
   style-loader: ^0.23.1
   webpack: ^4.20.2
