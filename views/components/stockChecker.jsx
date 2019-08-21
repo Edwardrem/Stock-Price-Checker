@@ -43,11 +43,11 @@ const App = () => {
             <form className="submit-book-form" onSubmit={handleSubmit}>
 
               <input className="form-stock" type="text" name="stock" placeholder="goog"  required/>
-                <label>
-                  Like?
-                  <input className="form-like" name="like" type="checkbox" value={true} />
-                </label>
-              <input className="form-submit" type="submit" value="Add Book"/>
+              <label>
+                Like?
+                <input className="form-like" name="like" type="checkbox" value={true} />
+              </label>
+              <input className="form-submit" type="submit" value="Get Price!"/>
 
             </form>
 
@@ -62,8 +62,13 @@ const App = () => {
         
           <form className="submit-book-form" onSubmit={handleSubmit}>
             
-            <input className="form-title" type="text" name="title" placeholder="*Book Title" required/>
-            <input className="form-submit" type="submit" value="Add Book"/>
+            <input className="form-stock" type="text" name="stock" placeholder="goog"  required/>
+            <input className="form-stock" type="text" name="stock" placeholder="msft"  required/>
+            <label>
+              Like?
+              <input className="form-like" name="like" type="checkbox" value={true} />
+            </label>
+            <input className="form-submit" type="submit" value="Get Price!"/>
             
           </form>
         
