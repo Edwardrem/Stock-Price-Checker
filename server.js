@@ -13,9 +13,11 @@ const app = express();
 app.use(helmet.contentSecurityPolicy({
   directives: {
     defaultSrc: ["'self'", 'glitch.com'],
-    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'"],
-    styleSrc: ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com'],
-    fontStc: ['fonts.gstatic.com']
+    scriptSrc: ["'self'", "'unsafe-inline'", "'unsafe-eval'", 'button.glitch.me'],
+    styleSrc: ["'self'", "'unsafe-inline'", 'cdnjs.cloudflare.com', 'fonts.googleapis.com', 'button.glitch.me'],
+    fontSrc: ['fonts.gstatic.com', 'cdnjs.cloudflare.com'],
+    imgSrc: ['cdn.glitch.com', 's3.amazonaws.com', 'glitch.com'],
+    connectSrc: ['api.glitch.com']
   }
 }));
 
