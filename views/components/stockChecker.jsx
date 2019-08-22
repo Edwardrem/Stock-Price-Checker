@@ -40,10 +40,17 @@ const App = ({setResult}) => {
             <form className="submit-price-form" onSubmit={handleSubmit}>
 
               <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
-              <label>
-                Like?
-                <input className="form-like" name="like" type="checkbox" value={true} />
-              </label>
+  
+              <label className="form-like-label" htmlFor="like1" >Like?</label>
+              <input
+                className="form-like-input"
+                type="checkbox"
+                id="like1" 
+                name="like"
+                value={true}
+              />
+              
+              
               <input className="form-submit" type="submit" value="Get Price!"/>
 
             </form>

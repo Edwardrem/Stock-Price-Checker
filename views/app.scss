@@ -328,9 +328,9 @@ nav {
   grid-template-columns: auto;
   grid-gap: 10px;
   grid-template-areas:
-    'form-stock1'
-    'form-like'
-    'form-submit';
+    'form-stock1     form-stock1'
+    'form-like-label form-like-input'
+    'form-submit     form-submit';
 }
 
 .submit-compare-form {
