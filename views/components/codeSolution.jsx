@@ -28,7 +28,19 @@ const CodeSolution = () => {
          
           <li>If I pass along 2 stocks, the return object will be an array with both stock's info but instead of <i>likes</i>, it will display <i>rel_likes</i>(the difference between the likes on both) on both.</li>
           
+          <SyntaxHighlighter language="javascript" style={atomDark}>
+            {q2}
+          </SyntaxHighlighter>
+          
           <li>All 5 functional tests are complete and passing.</li>
+          
+          <SyntaxHighlighter language="javascript" style={atomDark}>
+            {q3_1}
+          </SyntaxHighlighter>
+          
+          <SyntaxHighlighter language="javascript" style={atomDark}>
+            {q3_2}
+          </SyntaxHighlighter>
           
         </ol>
       </div>   
@@ -46,13 +58,14 @@ const CodeSolution = () => {
 }));`
   
   const q2 = `app.route('/api/stock-prices')
-  .get(async (req, res) => {
+  .get(async (req, res, next) => {
     try {
-      if(!req.query.stock) return res.send('you need to add a stock')
+      let {stock} = req.query;
+      if(!stock) return next(newError('you need to add a stock', 400))
 
-      const stock = Array.isArray(req.query.stock) 
-        ? req.query.stock.map(elm => elm.toUpperCase())
-        : req.query.stock.toUpperCase() 
+      stock = Array.isArray(stock) 
+        ? stock.map(elm => elm.toUpperCase())
+        : stock.toUpperCase() 
 
       if(req.query.like === 'true') {
         await handleLike(stock, req.ip)
@@ -60,7 +73,6 @@ const CodeSolution = () => {
 
       // if two stocks
       if(Array.isArray(stock)) {
-        console.log('ok')
         const [price0, likes0, price1, likes1] = await Promise.all(
           [
             getPrice(stock[0]),
