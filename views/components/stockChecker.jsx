@@ -10,9 +10,12 @@ const App = ({setResult}) => {
   
   const handleSubmit = e => {
     e.preventDefault();
-    const data = new FormData(e.target);
     
-    var obj = {};
+    const data = new FormData(e.target);
+    const btn = e.target;
+    btn.disabled = true;
+    
+    const obj = {};
     data.forEach((value, key) => {
       if(obj[key]) obj[key] = [].concat(obj[key], value)
       else obj[key] = value
@@ -24,7 +27,7 @@ const App = ({setResult}) => {
     .then(res => res.json())
     .then((data) => {
       setResult(data)
-      console.log(data, JSON.stringify(data))
+      btn.disabled = false;
     })
     .catch(error => console.error('Error:', error));
   }
@@ -41,11 +44,11 @@ const App = ({setResult}) => {
 
               <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
               
-              <label className="form-like-label" htmlFor="like1" >Like?</label>
+              <label className="form-like-label" htmlFor="like" >Like?</label>
               <input
                 className="form-like-input"
                 type="checkbox"
-                id="like1" 
+                id="like" 
                 name="like"
                 value={true}
               />
@@ -68,10 +71,14 @@ const App = ({setResult}) => {
             
             <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
             <input className="form-stock2" type="text" name="stock" placeholder="msft"  required/>
-            <label>
-              Like?
-              <input className="form-like" name="like" type="checkbox" value={true} />
-            </label>
+            <label className="form-like-label" htmlFor="like" >Like?</label>
+            <input
+              className="form-like-input"
+              type="checkbox"
+              id="like" 
+              name="like"
+              value={true}
+            />
             <input className="form-submit" type="submit" value="Get Price!"/>
             
           </form>
