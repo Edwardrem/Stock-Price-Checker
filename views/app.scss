@@ -360,12 +360,13 @@ nav {
 
 .form-like {
   padding: 10px;
-  display: grid;
-  grid-template-areas: 'form-like-label form-like-input';
   font-family: 'Lato';
   border: 1px solid #e6e6e6;
   border-radius: 5px;
   list-style: none;
+  display: grid;
+  grid-template-areas: 'form-like-label form-like-input';
+  align-items: center;
 }
 
 .form-stock1 {
