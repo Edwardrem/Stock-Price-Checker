@@ -34,7 +34,6 @@ module.exports = function (app) {
 
         // if two stocks
         if(Array.isArray(stock)) {
-          console.log('ok')
           const [price0, likes0, price1, likes1] = await Promise.all(
             [
               getPrice(stock[0]),
