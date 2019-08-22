@@ -347,7 +347,7 @@ nav {
     'form-submit';
 }
 
-.form-stock1, .form-stock2, .form-like {
+.form-stock1, .form-stock2 {
   resize: none;
   padding: 10px;
   font-family: 'Lato';
@@ -356,6 +356,16 @@ nav {
   &::placeholder {
     color: #A5A5A5;  
   }
+}
+
+.form-like {
+  padding: 10px;
+  display: grid;
+  grid-template-areas: 'form-like-label form-like-input';
+  font-family: 'Lato';
+  border: 1px solid #e6e6e6;
+  border-radius: 5px;
+  list-style: none;
 }
 
 .form-stock1 {
