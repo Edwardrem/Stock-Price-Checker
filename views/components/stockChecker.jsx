@@ -40,7 +40,8 @@ const App = ({setResult}) => {
             <form className="submit-price-form" onSubmit={handleSubmit}>
 
               <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
-  
+              
+              <li className="form-like">
               <label className="form-like-label" htmlFor="like1" >Like?</label>
               <input
                 className="form-like-input"
@@ -49,7 +50,7 @@ const App = ({setResult}) => {
                 name="like"
                 value={true}
               />
-              
+              </li>
               
               <input className="form-submit" type="submit" value="Get Price!"/>
 
