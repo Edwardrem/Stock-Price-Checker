@@ -10,16 +10,23 @@
 
 const {getPrice, getLikes, handleLike} = require('../handlers/stock')
 
+const newError = (message, status) => { 
+  const error = new Error(message); 
+  error.status = status; 
+  return error
+}
+
 module.exports = function (app) {
 
   app.route('/api/stock-prices')
-    .get(async (req, res) => {
+    .get(async (req, res, next) => {
       try {
-        if(!req.query.stock) return res.send('you need to add a stock')
+        let {stock} = req.query;
+        if(!stock) return next(newError('you need to add a stock', 400))
         
-        const stock = Array.isArray(req.query.stock) 
-          ? req.query.stock.map(elm => elm.toUpperCase())
-          : req.query.stock.toUpperCase() 
+        stock = Array.isArray(stock) 
+          ? stock.map(elm => elm.toUpperCase())
+          : stock.toUpperCase() 
         
         if(req.query.like === 'true') {
           await handleLike(stock, req.ip)
