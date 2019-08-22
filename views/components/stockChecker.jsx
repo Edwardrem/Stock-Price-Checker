@@ -39,7 +39,7 @@ const App = ({setResult}) => {
 
             <form className="submit-price-form" onSubmit={handleSubmit}>
 
-              <input className="form-stock" type="text" name="stock" placeholder="goog"  required/>
+              <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
               <label>
                 Like?
                 <input className="form-like" name="like" type="checkbox" value={true} />
@@ -59,8 +59,8 @@ const App = ({setResult}) => {
         
           <form className="submit-compare-form" onSubmit={handleSubmit}>
             
-            <input className="form-stock" type="text" name="stock" placeholder="goog"  required/>
-            <input className="form-stock" type="text" name="stock" placeholder="msft"  required/>
+            <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
+            <input className="form-stock2" type="text" name="stock" placeholder="msft"  required/>
             <label>
               Like?
               <input className="form-like" name="like" type="checkbox" value={true} />

@@ -328,11 +328,26 @@ nav {
   grid-template-columns: auto;
   grid-gap: 10px;
   grid-template-areas:
-    'form-title'
+    'form-stock1'
+    'form-like'
     'form-submit';
 }
 
-.form-title, .form-text {
+.submit-compare-form {
+  max-width: 500px;
+  margin: 0 auto;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: auto;
+  grid-gap: 10px;
+  grid-template-areas:
+    'form-stock1'
+    'form-stock2'
+    'form-like'
+    'form-submit';
+}
+
+.form-stock1, .form-stock2, .form-like {
   resize: none;
   padding: 10px;
   font-family: 'Lato';
@@ -343,14 +358,16 @@ nav {
   }
 }
 
-
-.form-title {
-  grid-area: form-title;
+.form-stock1 {
+  grid-area: form-stock1;
 }
 
-.form-text {
-  grid-area: form-text;
-  height: 140px;
+.form-stock2 {
+  grid-area: form-stock2;
+}
+
+.form-like {
+  grid-area: form-like;
 }
 
 .form-submit {
