@@ -28,8 +28,6 @@ const CodeSolution = () => {
          
           <li>If I pass along 2 stocks, the return object will be an array with both stock's info but instead of <i>likes</i>, it will display <i>rel_likes</i>(the difference between the likes on both) on both.</li>
           
-          <li>A good way to receive current price is the following external API(replacing 'GOOG' with your stock): <code>https://finance.google.com/finance/info?q=NASDAQ%3aGOOG</code></li>
-         
           <li>All 5 functional tests are complete and passing.</li>
           
         </ol>
@@ -41,7 +39,51 @@ const CodeSolution = () => {
 
   const q1 = `app.use(helmet.noCache());`
   
-  const q2 = `app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));`
+  const q2 = `app.route('/api/stock-prices')
+  .get(async (req, res) => {
+    try {
+      if(!req.query.stock) return res.send('you need to add a stock')
+
+      const stock = Array.isArray(req.query.stock) 
+        ? req.query.stock.map(elm => elm.toUpperCase())
+        : req.query.stock.toUpperCase() 
+
+      if(req.query.like === 'true') {
+        await handleLike(stock, req.ip)
+      }
+
+      // if two stocks
+      if(Array.isArray(stock)) {
+        console.log('ok')
+        const [price0, likes0, price1, likes1] = await Promise.all(
+          [
+            getPrice(stock[0]),
+            getLikes(stock[0]),
+            getPrice(stock[1]),
+            getLikes(stock[1])
+          ])
+
+        return res.json({
+          stockData : [
+            { stock : stock[0], price : price0, rel_likes : likes0-likes1 },
+            { stock : stock[1], price : price1, rel_likes : likes1-likes0 }
+          ]
+        })
+      }
+
+      // if one stock
+      const [price, likes] = await Promise.all(
+          [
+            getPrice(stock),
+            getLikes(stock)
+          ])
+
+      return res.json({stockData: {stock, price, likes}})
+
+    } catch(err) {
+      res.json(err)
+    }
+  });`
   
   
   
