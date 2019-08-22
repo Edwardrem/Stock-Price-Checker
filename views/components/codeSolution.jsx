@@ -37,7 +37,13 @@ const CodeSolution = () => {
   );
 }
 
-  const q1 = `app.use(helmet.noCache());`
+  const q1 = `app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+  }
+}));`
   
   const q2 = `app.route('/api/stock-prices')
   .get(async (req, res) => {

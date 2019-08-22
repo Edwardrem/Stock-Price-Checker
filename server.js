@@ -10,8 +10,13 @@ const runner            = require('./test-runner');
 
 const app = express();
 
-app.use(helmet.noCache());
-app.use(helmet.hidePoweredBy({ setTo: 'PHP 4.2.0' }));
+app.use(helmet.contentSecurityPolicy({
+  directives: {
+    defaultSrc: ["'self'"],
+    scriptSrc: ["'self'", "'unsafe-inline'"],
+    styleSrc: ["'self'", "'unsafe-inline'"],
+  }
+}));
 
 app.use(express.static('public'))
 
