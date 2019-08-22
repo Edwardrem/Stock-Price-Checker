@@ -12,7 +12,7 @@ const App = ({setResult}) => {
     e.preventDefault();
     
     const data = new FormData(e.target);
-    const btn = e.target;
+    const btn = e.target.lastChild;
     btn.disabled = true;
     
     const obj = {};
@@ -44,11 +44,11 @@ const App = ({setResult}) => {
 
               <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
               
-              <label className="form-like-label" htmlFor="like" >Like?</label>
+              <label className="form-like-label" htmlFor="like1" >Like?</label>
               <input
                 className="form-like-input"
                 type="checkbox"
-                id="like" 
+                id="like1" 
                 name="like"
                 value={true}
               />
@@ -71,11 +71,11 @@ const App = ({setResult}) => {
             
             <input className="form-stock1" type="text" name="stock" placeholder="goog"  required/>
             <input className="form-stock2" type="text" name="stock" placeholder="msft"  required/>
-            <label className="form-like-label" htmlFor="like" >Like?</label>
+            <label className="form-like-label" htmlFor="like2" >Like?</label>
             <input
               className="form-like-input"
               type="checkbox"
-              id="like" 
+              id="like2" 
               name="like"
               value={true}
             />
