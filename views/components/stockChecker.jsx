@@ -28,6 +28,7 @@ const App = ({setResult}) => {
     .then((data) => {
       setResult(data)
       btn.disabled = false;
+      document.getElementById('output').scrollIntoView();
     })
     .catch(error => console.error('Error:', error));
   }
